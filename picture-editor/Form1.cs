@@ -33,22 +33,7 @@ namespace picture_editor
         //----------------------------------------------------------------------------------------------------------------------
         //eigene Funktionen
 
-        private void bildVergroesern()
-        {
-            Bitmap original = (Bitmap)pictureBox1.Image;
-            Bitmap neu = new Bitmap(original, new Size(original.Width * 2, original.Height * 2));
-            pictureBox1.Image = neu;
-            speicherZwischen((Bitmap)pictureBox1.Image);
-        }
-
-        private void bildVerkleinern()
-        {
-            Bitmap original = (Bitmap)pictureBox1.Image;
-            Bitmap neu = new Bitmap(original, new Size(original.Width / 2, original.Height / 2));
-            pictureBox1.Image = neu;
-            speicherZwischen((Bitmap)pictureBox1.Image);
-        }
-
+        //Schwarz Weiß Filter
         private void change_to_greymap()    //noch sehr ineffizient
         {
             Bitmap greyBitmap = new Bitmap(pictureBox1.Image.Width, pictureBox1.Image.Height);
@@ -70,7 +55,15 @@ namespace picture_editor
             pictureBox1.Image = greyBitmap;
             speicherZwischen((Bitmap)pictureBox1.Image);    //Schritt speichern
         }
+        private void blackWhite_Click(object sender, EventArgs e)
+        {
+            if (bildVorhanden())
+            {
+                change_to_greymap();
+            }
+        }
 
+        //Pseudo Farben
         private void pseudo_coloring()
         {
             Bitmap pseudoMap = new Bitmap(pictureBox1.Image.Width, pictureBox1.Image.Height);
@@ -101,7 +94,16 @@ namespace picture_editor
             pictureBox1.Image = pseudoMap;
             speicherZwischen((Bitmap)pictureBox1.Image);
         }
+        private void pseudoColorButton_Click(object sender, EventArgs e)
+        {
+            if (bildVorhanden())
+            {
+                pseudo_coloring();
+            }
 
+        }
+
+        //Sepia Filter
         private void sepia_filter()
         {
             Bitmap sepiaMap = new Bitmap(pictureBox1.Image.Width, pictureBox1.Image.Height);
@@ -131,36 +133,56 @@ namespace picture_editor
             pictureBox1.Image = sepiaMap;
             speicherZwischen((Bitmap)pictureBox1.Image);
         }
-
-        private Bitmap set_brightness(int value)
+        private void sepiaFarbenButton_Click(object sender, EventArgs e)
         {
-            Bitmap tempBitmap = (Bitmap)pictureBox1.Image;
-            float finalValue = (float)value / 255.0f;
-            Bitmap newBitmap = new Bitmap(tempBitmap.Width, tempBitmap.Height);
-
-            Graphics gr = Graphics.FromImage(newBitmap);
-
-            float[][] floatColorMatrix ={
-                new float[] {1,0,0,0,0},
-                new float[] {0,1,0,0,0},
-                new float[] {0,0,1,0,0},
-                new float[] {0,0,0,1,0},
-                new float[] {finalValue,finalValue,finalValue,1,1}
-            };
-
-            ColorMatrix newColorMatrix = new ColorMatrix(floatColorMatrix);
-
-            ImageAttributes attribute = new ImageAttributes();
-            attribute.SetColorMatrix(newColorMatrix);
-
-            gr.DrawImage(tempBitmap, new Rectangle(0, 0, tempBitmap.Width, tempBitmap.Height), 0, 0, tempBitmap.Width, tempBitmap.Height, GraphicsUnit.Pixel, attribute);
-
-            attribute.Dispose();
-            gr.Dispose();
-            trackBar1.Value = 0;
-            return newBitmap;
+            if (bildVorhanden())
+            {
+                sepia_filter();
+            }
         }
 
+        //Schritte Panel
+        private void schrittZurueck()
+        {
+            zwischenSchrittCounter--;
+            if (zwischenSchrittCounter < 0)
+            {
+                zwischenSchrittCounter = maxSchritte - 1;
+            }
+            pictureBox1.Image = zwischenSchritte[zwischenSchrittCounter];
+            Debug.WriteLine("SpeicherCounter: " + zwischenSchrittCounter.ToString());
+        }
+        private void schrittVor()
+        {
+            zwischenSchrittCounter++;
+            if (zwischenSchrittCounter > maxSchritte - 1)
+            {
+                zwischenSchrittCounter = 0;
+            }
+            pictureBox1.Image = zwischenSchritte[zwischenSchrittCounter];
+            Debug.WriteLine("SpeicherCounter: " + zwischenSchrittCounter.ToString());
+        }
+        private void schrittZurueckButton_Click(object sender, EventArgs e)
+        {
+            schrittZurueck();
+        }
+        private void schrittVorButton_Click(object sender, EventArgs e)
+        {
+            schrittVor();
+        }
+        private void speicherZwischen(Bitmap bitmapIn)
+        {
+            zwischenSchrittCounter++;
+            if (zwischenSchrittCounter > maxSchritte - 1)
+            {
+                zwischenSchrittCounter = 0;
+            }
+
+            zwischenSchritte[zwischenSchrittCounter] = bitmapIn;
+            Debug.WriteLine("SpeicherCounter: " + zwischenSchrittCounter.ToString());
+        }
+
+        //Kontrast
         private void change_contrast(float value_in)
         {
             Bitmap neuerKontrast = new Bitmap(pictureBox1.Image.Width, pictureBox1.Image.Height);
@@ -203,42 +225,114 @@ namespace picture_editor
             }
             pictureBox1.Image = neuerKontrast;
             speicherZwischen((Bitmap)pictureBox1.Image);
-        }       
-
-        private void speicherZwischen(Bitmap bitmapIn)
+        }
+        private void hochLabel_Click(object sender, EventArgs e)
         {
-            zwischenSchrittCounter++;
-            if (zwischenSchrittCounter > maxSchritte-1)
+            change_contrast(15.0f);
+        }
+        private void runterLabel_Click(object sender, EventArgs e)
+        {
+            change_contrast(-15.0f);
+        }
+        
+        //Größe Panel
+        private void bildVergroesern()
+        {
+            Bitmap original = (Bitmap)pictureBox1.Image;
+            Bitmap neu = new Bitmap(original, new Size(original.Width * 2, original.Height * 2));
+            pictureBox1.Image = neu;
+            speicherZwischen((Bitmap)pictureBox1.Image);
+        }
+        private void bildVerkleinern()
+        {
+            Bitmap original = (Bitmap)pictureBox1.Image;
+            Bitmap neu = new Bitmap(original, new Size(original.Width / 2, original.Height / 2));
+            pictureBox1.Image = neu;
+            speicherZwischen((Bitmap)pictureBox1.Image);
+        }
+        private void groeserButton_Click(object sender, EventArgs e)
+        {
+            if (bildVorhanden())
             {
-                zwischenSchrittCounter = 0;
+                bildVergroesern();
             }
-
-            zwischenSchritte[zwischenSchrittCounter] = bitmapIn;
-            Debug.WriteLine("SpeicherCounter: " + zwischenSchrittCounter.ToString());
+        }
+        private void verkleinernButton_Click(object sender, EventArgs e)
+        {
+            if (bildVorhanden())
+            {
+                bildVerkleinern();
+            }
         }
 
-        private void schrittZurueck()
+        //Bild Panel
+        private void openInViewer()
         {
-            zwischenSchrittCounter--;
-            if (zwischenSchrittCounter < 0)
+            Bitmap temp = (Bitmap)pictureBox1.Image;
+            temp.Save("c:\\button.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+            Process.Start("c:\\button.jpg");
+        }
+        private void viewerOpenButton_Click(object sender, EventArgs e)
+        {
+            openInViewer();
+        }
+        private void loadPictureButton_Click(object sender, EventArgs e)
+        {
+            DialogResult result = bildÖffnenDialog.ShowDialog();
+            if (result == DialogResult.OK)
             {
-                zwischenSchrittCounter = maxSchritte-1;
+                pictureBox1.Image = Image.FromFile(bildÖffnenDialog.FileName);
+                geladenesBild = (Bitmap)pictureBox1.Image;
+                speicherZwischen((Bitmap)pictureBox1.Image);
             }
-            pictureBox1.Image = zwischenSchritte[zwischenSchrittCounter];
-            Debug.WriteLine("SpeicherCounter: " + zwischenSchrittCounter.ToString());
+        }
+        private void safeButton_Click(object sender, EventArgs e)
+        {
+            DialogResult result = bildSpeichernDialog.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                pictureBox1.Image.Save(bildSpeichernDialog.FileName, ImageFormat.Jpeg);
+
+            }
         }
 
-        private void schrittVor()
+        //Helligkeit Panel
+        private Bitmap set_brightness(int value)
         {
-            zwischenSchrittCounter++;
-            if (zwischenSchrittCounter > maxSchritte-1)
-            {
-                zwischenSchrittCounter = 0;
-            }
-            pictureBox1.Image = zwischenSchritte[zwischenSchrittCounter];
-            Debug.WriteLine("SpeicherCounter: " + zwischenSchrittCounter.ToString());
-        }
+            Bitmap tempBitmap = (Bitmap)pictureBox1.Image;
+            float finalValue = (float)value / 255.0f;
+            Bitmap newBitmap = new Bitmap(tempBitmap.Width, tempBitmap.Height);
 
+            Graphics gr = Graphics.FromImage(newBitmap);
+
+            float[][] floatColorMatrix ={
+                new float[] {1,0,0,0,0},
+                new float[] {0,1,0,0,0},
+                new float[] {0,0,1,0,0},
+                new float[] {0,0,0,1,0},
+                new float[] {finalValue,finalValue,finalValue,1,1}
+            };
+
+            ColorMatrix newColorMatrix = new ColorMatrix(floatColorMatrix);
+
+            ImageAttributes attribute = new ImageAttributes();
+            attribute.SetColorMatrix(newColorMatrix);
+
+            gr.DrawImage(tempBitmap, new Rectangle(0, 0, tempBitmap.Width, tempBitmap.Height), 0, 0, tempBitmap.Width, tempBitmap.Height, GraphicsUnit.Pixel, attribute);
+
+            attribute.Dispose();
+            gr.Dispose();
+            trackBar1.Value = 0;
+            return newBitmap;
+        }
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            Debug.WriteLine(trackBar1.Value);
+            pictureBox1.Image = set_brightness(trackBar1.Value);
+        }
+        
+        //Sonstiges
         private bool bildVorhanden()
         {
             if (pictureBox1.Image != null)
@@ -249,119 +343,27 @@ namespace picture_editor
                 return false;
             }
         }
-
-        private void openInViewer()
-        {
-            Bitmap temp = (Bitmap)pictureBox1.Image;
-            temp.Save("c:\\button.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
-            Process.Start("c:\\button.jpg");
-        }
-
-        //----------------------------------------------------------------------------------------------------------------------
-
-        private void button1_Click(object sender, EventArgs e)
+        private void openColorDialog(object sender, EventArgs e)
         {
             colorDialog1.ShowDialog();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            
-        }
 
-        private void loadPictureButton_Click(object sender, EventArgs e)
-        {
-            DialogResult result= bildÖffnenDialog.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                pictureBox1.Image = Image.FromFile(bildÖffnenDialog.FileName);
-                geladenesBild = (Bitmap)pictureBox1.Image;
-                speicherZwischen((Bitmap)pictureBox1.Image);
-            }
-        }
+        
 
-        private void schrittZurueckButton_Click(object sender, EventArgs e)
-        {
-            schrittZurueck();
-        }
+        
 
-        private void blackWhite_Click(object sender, EventArgs e)
-        {
-            if (bildVorhanden())
-            {
-                change_to_greymap();
-            }
-        }
+        
 
-        private void pseudoColorButton_Click(object sender, EventArgs e)
-        {
-            if (bildVorhanden())
-            {
-                pseudo_coloring();
-            }
-            
-        }
+        
 
-        private void schrittVorButton_Click(object sender, EventArgs e)
-        {
-            schrittVor();
-        }
+        
 
-        private void sepiaFarbenButton_Click(object sender, EventArgs e)
-        {
-            if (bildVorhanden())
-            {
-                sepia_filter();
-            }
-        }
+        
 
-        private void viewerOpenButton_Click(object sender, EventArgs e)
-        {
-            openInViewer();
-        }
+        
 
-        private void hochLabel_Click(object sender, EventArgs e)
-        {
-            change_contrast(15.0f);
-        }
-
-        private void runterLabel_Click(object sender, EventArgs e)
-        {
-            change_contrast(-15.0f);
-        }
-
-        private void safeButton_Click(object sender, EventArgs e)
-        {
-            DialogResult result = bildSpeichernDialog.ShowDialog();
-
-            if (result == DialogResult.OK)
-            {
-                    pictureBox1.Image.Save(bildSpeichernDialog.FileName, ImageFormat.Jpeg);
-                
-            }
-        }
-
-        private void trackBar1_Scroll(object sender, EventArgs e)
-        {
-            Debug.WriteLine(trackBar1.Value);
-            pictureBox1.Image = set_brightness(trackBar1.Value);
-        }
-
-        private void groeserButton_Click(object sender, EventArgs e)
-        {
-            if (bildVorhanden())
-            {
-                bildVergroesern();
-            }            
-        }
-
-        private void verkleinernButton_Click(object sender, EventArgs e)
-        {
-            if (bildVorhanden())
-            {
-                bildVerkleinern();
-            }   
-        }
+        
 
 
     }

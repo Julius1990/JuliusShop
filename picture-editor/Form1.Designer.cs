@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.openColorDialogButton = new System.Windows.Forms.Button();
+            this.openColorDialoButton = new System.Windows.Forms.Button();
             this.loadPictureButton = new System.Windows.Forms.Button();
             this.bildÖffnenDialog = new System.Windows.Forms.OpenFileDialog();
             this.panelPictureBox = new System.Windows.Forms.Panel();
@@ -43,7 +43,7 @@
             this.schrittZurueckButton = new System.Windows.Forms.Button();
             this.schrittLabel = new System.Windows.Forms.Label();
             this.schrittVorButton = new System.Windows.Forms.Button();
-            this.viewerOpenButton = new System.Windows.Forms.Button();
+            this.betrachtenButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.runterLabel = new System.Windows.Forms.Button();
             this.contrastLabel = new System.Windows.Forms.Label();
@@ -57,6 +57,8 @@
             this.verkleinernButton = new System.Windows.Forms.Button();
             this.groeseLabel = new System.Windows.Forms.Label();
             this.groeserButton = new System.Windows.Forms.Button();
+            this.bildPanel = new System.Windows.Forms.Panel();
+            this.bildLabel = new System.Windows.Forms.Label();
             this.panelPictureBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.filterPanel.SuspendLayout();
@@ -65,25 +67,26 @@
             this.helligkeitPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.groesePanel.SuspendLayout();
+            this.bildPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // openColorDialogButton
+            // openColorDialoButton
             // 
-            this.openColorDialogButton.Location = new System.Drawing.Point(12, 12);
-            this.openColorDialogButton.Name = "openColorDialogButton";
-            this.openColorDialogButton.Size = new System.Drawing.Size(100, 23);
-            this.openColorDialogButton.TabIndex = 0;
-            this.openColorDialogButton.Text = "Color Dialog";
-            this.openColorDialogButton.UseVisualStyleBackColor = true;
-            this.openColorDialogButton.Click += new System.EventHandler(this.button1_Click);
+            this.openColorDialoButton.Location = new System.Drawing.Point(-2, 12);
+            this.openColorDialoButton.Name = "openColorDialoButton";
+            this.openColorDialoButton.Size = new System.Drawing.Size(100, 23);
+            this.openColorDialoButton.TabIndex = 0;
+            this.openColorDialoButton.Text = "Color Dialog";
+            this.openColorDialoButton.UseVisualStyleBackColor = true;
+            this.openColorDialoButton.Click += new System.EventHandler(this.openColorDialog);
             // 
             // loadPictureButton
             // 
-            this.loadPictureButton.Location = new System.Drawing.Point(12, 479);
+            this.loadPictureButton.Location = new System.Drawing.Point(3, 32);
             this.loadPictureButton.Name = "loadPictureButton";
-            this.loadPictureButton.Size = new System.Drawing.Size(100, 23);
+            this.loadPictureButton.Size = new System.Drawing.Size(73, 23);
             this.loadPictureButton.TabIndex = 2;
-            this.loadPictureButton.Text = "Bild öffnen";
+            this.loadPictureButton.Text = "öffnen";
             this.loadPictureButton.UseVisualStyleBackColor = true;
             this.loadPictureButton.Click += new System.EventHandler(this.loadPictureButton_Click);
             // 
@@ -98,9 +101,9 @@
             this.panelPictureBox.BackColor = System.Drawing.Color.LightGray;
             this.panelPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelPictureBox.Controls.Add(this.pictureBox1);
-            this.panelPictureBox.Location = new System.Drawing.Point(118, 12);
+            this.panelPictureBox.Location = new System.Drawing.Point(103, 12);
             this.panelPictureBox.Name = "panelPictureBox";
-            this.panelPictureBox.Size = new System.Drawing.Size(666, 519);
+            this.panelPictureBox.Size = new System.Drawing.Size(681, 519);
             this.panelPictureBox.TabIndex = 4;
             // 
             // pictureBox1
@@ -214,15 +217,15 @@
             this.schrittVorButton.UseVisualStyleBackColor = true;
             this.schrittVorButton.Click += new System.EventHandler(this.schrittVorButton_Click);
             // 
-            // viewerOpenButton
+            // betrachtenButton
             // 
-            this.viewerOpenButton.Location = new System.Drawing.Point(12, 450);
-            this.viewerOpenButton.Name = "viewerOpenButton";
-            this.viewerOpenButton.Size = new System.Drawing.Size(100, 23);
-            this.viewerOpenButton.TabIndex = 6;
-            this.viewerOpenButton.Text = "Bild öffnen mit";
-            this.viewerOpenButton.UseVisualStyleBackColor = true;
-            this.viewerOpenButton.Click += new System.EventHandler(this.viewerOpenButton_Click);
+            this.betrachtenButton.Location = new System.Drawing.Point(3, 90);
+            this.betrachtenButton.Name = "betrachtenButton";
+            this.betrachtenButton.Size = new System.Drawing.Size(73, 23);
+            this.betrachtenButton.TabIndex = 6;
+            this.betrachtenButton.Text = "betrachten";
+            this.betrachtenButton.UseVisualStyleBackColor = true;
+            this.betrachtenButton.Click += new System.EventHandler(this.viewerOpenButton_Click);
             // 
             // panel1
             // 
@@ -271,11 +274,11 @@
             // 
             // safeButton
             // 
-            this.safeButton.Location = new System.Drawing.Point(12, 508);
+            this.safeButton.Location = new System.Drawing.Point(3, 61);
             this.safeButton.Name = "safeButton";
-            this.safeButton.Size = new System.Drawing.Size(100, 23);
+            this.safeButton.Size = new System.Drawing.Size(73, 23);
             this.safeButton.TabIndex = 8;
-            this.safeButton.Text = "Bild speichern";
+            this.safeButton.Text = "speichern";
             this.safeButton.UseVisualStyleBackColor = true;
             this.safeButton.Click += new System.EventHandler(this.safeButton_Click);
             // 
@@ -363,24 +366,45 @@
             this.groeserButton.UseVisualStyleBackColor = true;
             this.groeserButton.Click += new System.EventHandler(this.groeserButton_Click);
             // 
+            // bildPanel
+            // 
+            this.bildPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.bildPanel.Controls.Add(this.bildLabel);
+            this.bildPanel.Controls.Add(this.betrachtenButton);
+            this.bildPanel.Controls.Add(this.loadPictureButton);
+            this.bildPanel.Controls.Add(this.safeButton);
+            this.bildPanel.Location = new System.Drawing.Point(12, 409);
+            this.bildPanel.Name = "bildPanel";
+            this.bildPanel.Size = new System.Drawing.Size(85, 122);
+            this.bildPanel.TabIndex = 4;
+            // 
+            // bildLabel
+            // 
+            this.bildLabel.AutoSize = true;
+            this.bildLabel.BackColor = System.Drawing.Color.Transparent;
+            this.bildLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bildLabel.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.bildLabel.Location = new System.Drawing.Point(3, 9);
+            this.bildLabel.Name = "bildLabel";
+            this.bildLabel.Size = new System.Drawing.Size(35, 20);
+            this.bildLabel.TabIndex = 2;
+            this.bildLabel.Text = "Bild";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(931, 543);
+            this.Controls.Add(this.bildPanel);
             this.Controls.Add(this.groesePanel);
             this.Controls.Add(this.helligkeitPanel);
-            this.Controls.Add(this.safeButton);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.viewerOpenButton);
             this.Controls.Add(this.schrittePanel);
             this.Controls.Add(this.filterPanel);
             this.Controls.Add(this.panelPictureBox);
-            this.Controls.Add(this.loadPictureButton);
-            this.Controls.Add(this.openColorDialogButton);
+            this.Controls.Add(this.openColorDialoButton);
             this.Name = "Form1";
             this.Text = "Hallo";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.panelPictureBox.ResumeLayout(false);
             this.panelPictureBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -395,6 +419,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.groesePanel.ResumeLayout(false);
             this.groesePanel.PerformLayout();
+            this.bildPanel.ResumeLayout(false);
+            this.bildPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -402,7 +428,7 @@
         #endregion
 
         private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.Button openColorDialogButton;
+        private System.Windows.Forms.Button openColorDialoButton;
         private System.Windows.Forms.Button loadPictureButton;
         private System.Windows.Forms.OpenFileDialog bildÖffnenDialog;
         private System.Windows.Forms.Panel panelPictureBox;
@@ -416,7 +442,7 @@
         private System.Windows.Forms.Button schrittVorButton;
         private System.Windows.Forms.Button pseudoColorButton;
         private System.Windows.Forms.Button sepiaFarbenButton;
-        private System.Windows.Forms.Button viewerOpenButton;
+        private System.Windows.Forms.Button betrachtenButton;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button runterLabel;
         private System.Windows.Forms.Label contrastLabel;
@@ -430,6 +456,8 @@
         private System.Windows.Forms.Button verkleinernButton;
         private System.Windows.Forms.Label groeseLabel;
         private System.Windows.Forms.Button groeserButton;
+        private System.Windows.Forms.Panel bildPanel;
+        private System.Windows.Forms.Label bildLabel;
     }
 }
 
