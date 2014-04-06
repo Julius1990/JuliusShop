@@ -49,26 +49,26 @@ namespace picture_editor
             speicherZwischen((Bitmap)pictureBox1.Image);
         }
 
-        private void change_to_greymap()
+        private void change_to_greymap()    //noch sehr ineffizient
         {
             Bitmap greyBitmap = new Bitmap(pictureBox1.Image.Width, pictureBox1.Image.Height);
             Bitmap origBitmap = (Bitmap)pictureBox1.Image;
-
+            //läuft jedes Pixel einzeln durch
             for (int x = 0; x < pictureBox1.Image.Width; x++)
             {
                 for (int y = 0; y < pictureBox1.Image.Height; y++)
                 {
                     Color orig = origBitmap.GetPixel(x, y);
-
+                    //Diese Werte sind aus dem Internet
                     int grey = (int)((orig.R * 0.3) + (orig.G * 0.59) + (orig.B * 0.11));
-
+                    //daraus wird dann eine neue Farbe gemacht
                     Color neueFarbe = Color.FromArgb(grey, grey, grey);
-
+                    //und das aktuelle Pixel damit überschrieben
                     greyBitmap.SetPixel(x, y, neueFarbe);
                 }
             }
             pictureBox1.Image = greyBitmap;
-            speicherZwischen((Bitmap)pictureBox1.Image);
+            speicherZwischen((Bitmap)pictureBox1.Image);    //Schritt speichern
         }
 
         private void pseudo_coloring()
@@ -289,7 +289,6 @@ namespace picture_editor
         {
             if (bildVorhanden())
             {
-                //MessageBox.Show("wird angewendet");
                 change_to_greymap();
             }
         }
