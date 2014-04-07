@@ -126,6 +126,7 @@ namespace picture_editor
         {
             parent._geladenesBild = aktuell;
             parent.setPictureBox(aktuell);
+            parent.speicherZwischen(aktuell);
             this.Close();
         }
 

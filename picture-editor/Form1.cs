@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,7 @@ namespace picture_editor
         public Form1()
         {
             InitializeComponent();
+            
         }
 
         //----------------------------------------------------------------------------------------------------------------------
@@ -33,7 +35,7 @@ namespace picture_editor
         int maxSchritte = 100;
         Bitmap[] zwischenSchritte = new Bitmap[100];
         int zwischenSchrittCounter = 0;
-
+        contrast contrastbearbeiten;
         formhelligkeit hellBearbeiten;
         
 
@@ -182,7 +184,7 @@ namespace picture_editor
         {
             schrittVor();
         }
-        private void speicherZwischen(Bitmap bitmapIn)
+        public void speicherZwischen(Bitmap bitmapIn)
         {
             zwischenSchrittCounter++;
             if (zwischenSchrittCounter > maxSchritte - 1)
@@ -193,96 +195,86 @@ namespace picture_editor
             zwischenSchritte[zwischenSchrittCounter] = bitmapIn;
             Debug.WriteLine("SpeicherCounter: " + zwischenSchrittCounter.ToString());
         }
-
-        //Kontrast
-        private void change_contrast(float value_in)
-        {
-            Bitmap neuerKontrast = new Bitmap(pictureBox1.Image.Width, pictureBox1.Image.Height);
-            Bitmap origBitmap = (Bitmap)pictureBox1.Image;
-
-            float Value = value_in;
-            Value = (100.0f + Value) / 100.0f;
-            Value *= Value;
-
-            for (int x = 0; x < pictureBox1.Image.Width; x++)
-            {
-                for (int y = 0; y < pictureBox1.Image.Height; y++)
-                {
-                    Color origColor = origBitmap.GetPixel(x, y);
-
-                    // Neue Farbe [-1,1]:
-                    float Red = origColor.R / 255.0f;
-                    float Green = origColor.G / 255.0f;
-                    float Blue = origColor.B / 255.0f;
-                    Red = ((((Red - 0.5f) * Value) + 0.5f) * 255.0f);
-                    if (Red > 255)
-                        Red = 255;
-                    if (Red < 0)
-                        Red = 0;
-                    Green = ((((Green - 0.5f) * Value) + 0.5f) * 255.0f);
-                    if (Green > 255)
-                        Green = 255;
-                    if (Green < 0)
-                        Green = 0;
-                    Blue = ((((Blue - 0.5f) * Value) + 0.5f) * 255.0f);
-                    if (Blue > 255)
-                        Blue = 255;
-                    if (Blue < 0)
-                        Blue = 0;
-
-                    Color newColor = Color.FromArgb((int)Red, (int)Green, (int)Blue);
-                    
-                    neuerKontrast.SetPixel(x, y, newColor);
-                }
-            }
-            pictureBox1.Image = neuerKontrast;
-            speicherZwischen((Bitmap)pictureBox1.Image);
-        }
-        private void hochLabel_Click(object sender, EventArgs e)
-        {
-            change_contrast(15.0f);
-        }
-        private void runterLabel_Click(object sender, EventArgs e)
-        {
-            change_contrast(-15.0f);
-        }
         
         //Größe Panel
-        private void bildVergroesern()
+        private void bildVergroesern(int value)
         {
-            Bitmap original = (Bitmap)pictureBox1.Image;
-            Bitmap neu = new Bitmap(original, new Size(original.Width * 2, original.Height * 2));
-            pictureBox1.Image = neu;
+            Bitmap orig = geladenesBild;
+            int targetWidth = orig.Width * value;
+            int targetHeight = orig.Height * value;
+            Bitmap gross = new Bitmap(targetWidth,targetHeight);
+            Graphics gr = Graphics.FromImage(gross);
+            gr.Clear(Color.Black);
+            gr.InterpolationMode = InterpolationMode.Bicubic;
+            gr.DrawImage(orig, new Rectangle(0, 0, targetWidth, targetHeight), new Rectangle(0, 0, orig.Width, orig.Height), GraphicsUnit.Pixel);
+            gr.Dispose();
+            geladenesBild = gross;
+            pictureBox1.Image = gross;
             speicherZwischen((Bitmap)pictureBox1.Image);
         }
-        private void bildVerkleinern()
+        private void bildVerkleinern(int value)
         {
-            Bitmap original = (Bitmap)pictureBox1.Image;
-            Bitmap neu = new Bitmap(original, new Size(original.Width / 2, original.Height / 2));
-            pictureBox1.Image = neu;
+            Bitmap orig = geladenesBild;
+            int targetWidth = orig.Width / value;
+            int targetHeight = orig.Height / value;
+            Bitmap gross = new Bitmap(targetWidth, targetHeight);
+            Graphics gr = Graphics.FromImage(gross);
+            gr.Clear(Color.Black);
+            gr.InterpolationMode = InterpolationMode.Bicubic;
+            gr.DrawImage(orig, new Rectangle(0, 0, targetWidth, targetHeight), new Rectangle(0, 0, orig.Width, orig.Height), GraphicsUnit.Pixel);
+            gr.Dispose();
+            geladenesBild = gross;
+            pictureBox1.Image = gross;
             speicherZwischen((Bitmap)pictureBox1.Image);
         }
         private void groeserButton_Click(object sender, EventArgs e)
         {
             if (bildVorhanden())
             {
-                bildVergroesern();
+                bildVergroesern(2);
+                skalierungAnzeigen();
+            }
+        }
+        private void vierfachButton_Click(object sender, EventArgs e)
+        {
+            if (bildVorhanden())
+            {
+                bildVergroesern(4);
+                skalierungAnzeigen();
             }
         }
         private void verkleinernButton_Click(object sender, EventArgs e)
         {
             if (bildVorhanden())
             {
-                bildVerkleinern();
+                bildVerkleinern(2);
+                skalierungAnzeigen();
             }
+        }
+        private void viertelButton_Click(object sender, EventArgs e)
+        {
+            if (bildVorhanden())
+            {
+                bildVerkleinern(4);
+                skalierungAnzeigen();
+            }
+        }
+        private void skalierungAnzeigen()
+        {
+            zweifachButton.Text = (geladenesBild.Width * 2).ToString() + " x " + (geladenesBild.Height * 2).ToString();
+            vierfachButton.Text = (geladenesBild.Width * 4).ToString() + " x " + (geladenesBild.Height * 4).ToString();
+            halbButton.Text = (geladenesBild.Width / 2).ToString() + " x " + (geladenesBild.Height / 2).ToString();
+            viertelButton.Text = (geladenesBild.Width / 4).ToString() + " x " + (geladenesBild.Height / 4).ToString();
+            label1.Text = geladenesBild.Width.ToString() + " x " + geladenesBild.Height.ToString();
         }
 
         //Bild Panel
         private void openInViewer()
         {
             Bitmap temp = (Bitmap)pictureBox1.Image;
-            temp.Save("c:\\button.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
-            Process.Start("c:\\button.jpg");
+            string pfad = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "safe.png");
+            temp.Save(pfad);
+            Process.Start(pfad);
         }
         private void viewerOpenButton_Click(object sender, EventArgs e)
         {
@@ -296,6 +288,9 @@ namespace picture_editor
                 pictureBox1.Image = Image.FromFile(bildÖffnenDialog.FileName);
                 geladenesBild = (Bitmap)pictureBox1.Image;
                 speicherZwischen((Bitmap)pictureBox1.Image);
+                safeButton.Visible = true;
+                betrachtenButton.Visible = true;
+                skalierungAnzeigen();
             }
         }
         private void safeButton_Click(object sender, EventArgs e)
@@ -309,46 +304,25 @@ namespace picture_editor
             }
         }
 
-        //Helligkeit Panel
+        //Einstellungen Panel
         private void set_brightness()
         {
-            hellBearbeiten = new formhelligkeit(geladenesBild,this);
+            hellBearbeiten = new formhelligkeit(geladenesBild, this);
             hellBearbeiten.Show();
-
-            //geladenesBild = hellBearbeiten.original;
-            //pictureBox1.Image = geladenesBild;
-            /*alt
-            Bitmap tempBitmap = (Bitmap)pictureBox1.Image;
-            float finalValue = (float)value / 255.0f;
-            Bitmap newBitmap = new Bitmap(tempBitmap.Width, tempBitmap.Height);
-
-            Graphics gr = Graphics.FromImage(newBitmap);
-
-            float[][] floatColorMatrix ={
-                new float[] {1,0,0,0,0},
-                new float[] {0,1,0,0,0},
-                new float[] {0,0,1,0,0},
-                new float[] {0,0,0,1,0},
-                new float[] {finalValue,finalValue,finalValue,1,1}
-            };
-
-            ColorMatrix newColorMatrix = new ColorMatrix(floatColorMatrix);
-
-            ImageAttributes attribute = new ImageAttributes();
-            attribute.SetColorMatrix(newColorMatrix);
-            
-            gr.DrawImage(tempBitmap, new Rectangle(0, 0, tempBitmap.Width, tempBitmap.Height), 0, 0, tempBitmap.Width, tempBitmap.Height, GraphicsUnit.Pixel, attribute);
-
-            attribute.Dispose();
-            gr.Dispose();
-            trackBar1.Value = 0;
-            return newBitmap;*/
         }
         private void helligkeitButton_Click(object sender, EventArgs e)
         {
             if (bildVorhanden())
             {
                 set_brightness();
+            }
+        }
+        private void contrastButton_Click(object sender, EventArgs e)
+        {
+            if (bildVorhanden())
+            {
+                contrastbearbeiten = new contrast(geladenesBild, this);
+                contrastbearbeiten.Show();
             }
         }
         
@@ -363,10 +337,16 @@ namespace picture_editor
                 return false;
             }
         }
-        private void openColorDialog(object sender, EventArgs e)
+
+        private void openColorDialoButton_Click(object sender, EventArgs e)
         {
             colorDialog1.ShowDialog();
         }
+
+        
+
+        
+
 
         
 
@@ -390,3 +370,5 @@ namespace picture_editor
 
     }
 }
+
+        

@@ -1,4 +1,5 @@
-﻿namespace picture_editor
+﻿using System.Windows.Forms.VisualStyles;
+namespace picture_editor
 {
     partial class Form1
     {
@@ -44,26 +45,26 @@
             this.schrittLabel = new System.Windows.Forms.Label();
             this.schrittVorButton = new System.Windows.Forms.Button();
             this.betrachtenButton = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.runterLabel = new System.Windows.Forms.Button();
-            this.contrastLabel = new System.Windows.Forms.Label();
-            this.hochLabel = new System.Windows.Forms.Button();
+            this.contrastButton = new System.Windows.Forms.Button();
             this.safeButton = new System.Windows.Forms.Button();
             this.bildSpeichernDialog = new System.Windows.Forms.SaveFileDialog();
             this.helligkeitPanel = new System.Windows.Forms.Panel();
             this.helligkeitButton = new System.Windows.Forms.Button();
             this.helligkeitLabel = new System.Windows.Forms.Label();
             this.groesePanel = new System.Windows.Forms.Panel();
-            this.verkleinernButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.aktuelleGroeseLabel = new System.Windows.Forms.Label();
+            this.viertelButton = new System.Windows.Forms.Button();
+            this.vierfachButton = new System.Windows.Forms.Button();
+            this.halbButton = new System.Windows.Forms.Button();
             this.groeseLabel = new System.Windows.Forms.Label();
-            this.groeserButton = new System.Windows.Forms.Button();
+            this.zweifachButton = new System.Windows.Forms.Button();
             this.bildPanel = new System.Windows.Forms.Panel();
             this.bildLabel = new System.Windows.Forms.Label();
             this.panelPictureBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.filterPanel.SuspendLayout();
             this.schrittePanel.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.helligkeitPanel.SuspendLayout();
             this.groesePanel.SuspendLayout();
             this.bildPanel.SuspendLayout();
@@ -73,17 +74,16 @@
             // 
             this.openColorDialoButton.Location = new System.Drawing.Point(12, 12);
             this.openColorDialoButton.Name = "openColorDialoButton";
-            this.openColorDialoButton.Size = new System.Drawing.Size(80, 23);
-            this.openColorDialoButton.TabIndex = 0;
+            this.openColorDialoButton.Size = new System.Drawing.Size(75, 23);
+            this.openColorDialoButton.TabIndex = 10;
             this.openColorDialoButton.Text = "Color Dialog";
-            this.openColorDialoButton.UseVisualStyleBackColor = true;
-            this.openColorDialoButton.Click += new System.EventHandler(this.openColorDialog);
+            this.openColorDialoButton.Click += new System.EventHandler(this.openColorDialoButton_Click);
             // 
             // loadPictureButton
             // 
-            this.loadPictureButton.Location = new System.Drawing.Point(3, 32);
+            this.loadPictureButton.Location = new System.Drawing.Point(7, 32);
             this.loadPictureButton.Name = "loadPictureButton";
-            this.loadPictureButton.Size = new System.Drawing.Size(73, 23);
+            this.loadPictureButton.Size = new System.Drawing.Size(84, 23);
             this.loadPictureButton.TabIndex = 2;
             this.loadPictureButton.Text = "öffnen";
             this.loadPictureButton.UseVisualStyleBackColor = true;
@@ -100,7 +100,7 @@
             this.panelPictureBox.BackColor = System.Drawing.Color.LightGray;
             this.panelPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelPictureBox.Controls.Add(this.pictureBox1);
-            this.panelPictureBox.Location = new System.Drawing.Point(103, 12);
+            this.panelPictureBox.Location = new System.Drawing.Point(128, 12);
             this.panelPictureBox.Name = "panelPictureBox";
             this.panelPictureBox.Size = new System.Drawing.Size(681, 519);
             this.panelPictureBox.TabIndex = 4;
@@ -109,8 +109,8 @@
             // 
             this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(673, 511);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.Size = new System.Drawing.Size(673, 510);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -121,15 +121,15 @@
             this.filterPanel.Controls.Add(this.pseudoColorButton);
             this.filterPanel.Controls.Add(this.filterLabel);
             this.filterPanel.Controls.Add(this.blackWhiteButton);
-            this.filterPanel.Location = new System.Drawing.Point(790, 108);
+            this.filterPanel.Location = new System.Drawing.Point(815, 108);
             this.filterPanel.Name = "filterPanel";
-            this.filterPanel.Size = new System.Drawing.Size(129, 120);
+            this.filterPanel.Size = new System.Drawing.Size(119, 120);
             this.filterPanel.TabIndex = 5;
             // 
             // sepiaFarbenButton
             // 
             this.sepiaFarbenButton.AutoSize = true;
-            this.sepiaFarbenButton.Location = new System.Drawing.Point(3, 88);
+            this.sepiaFarbenButton.Location = new System.Drawing.Point(7, 90);
             this.sepiaFarbenButton.Name = "sepiaFarbenButton";
             this.sepiaFarbenButton.Size = new System.Drawing.Size(89, 23);
             this.sepiaFarbenButton.TabIndex = 3;
@@ -140,7 +140,7 @@
             // pseudoColorButton
             // 
             this.pseudoColorButton.AutoSize = true;
-            this.pseudoColorButton.Location = new System.Drawing.Point(3, 59);
+            this.pseudoColorButton.Location = new System.Drawing.Point(7, 59);
             this.pseudoColorButton.Name = "pseudoColorButton";
             this.pseudoColorButton.Size = new System.Drawing.Size(89, 23);
             this.pseudoColorButton.TabIndex = 2;
@@ -163,7 +163,7 @@
             // blackWhiteButton
             // 
             this.blackWhiteButton.AutoSize = true;
-            this.blackWhiteButton.Location = new System.Drawing.Point(3, 30);
+            this.blackWhiteButton.Location = new System.Drawing.Point(7, 30);
             this.blackWhiteButton.Name = "blackWhiteButton";
             this.blackWhiteButton.Size = new System.Drawing.Size(89, 23);
             this.blackWhiteButton.TabIndex = 0;
@@ -177,15 +177,15 @@
             this.schrittePanel.Controls.Add(this.schrittZurueckButton);
             this.schrittePanel.Controls.Add(this.schrittLabel);
             this.schrittePanel.Controls.Add(this.schrittVorButton);
-            this.schrittePanel.Location = new System.Drawing.Point(790, 12);
+            this.schrittePanel.Location = new System.Drawing.Point(815, 12);
             this.schrittePanel.Name = "schrittePanel";
-            this.schrittePanel.Size = new System.Drawing.Size(129, 90);
+            this.schrittePanel.Size = new System.Drawing.Size(119, 90);
             this.schrittePanel.TabIndex = 1;
             // 
             // schrittZurueckButton
             // 
             this.schrittZurueckButton.AutoSize = true;
-            this.schrittZurueckButton.Location = new System.Drawing.Point(61, 42);
+            this.schrittZurueckButton.Location = new System.Drawing.Point(53, 42);
             this.schrittZurueckButton.Name = "schrittZurueckButton";
             this.schrittZurueckButton.Size = new System.Drawing.Size(55, 35);
             this.schrittZurueckButton.TabIndex = 3;
@@ -210,7 +210,7 @@
             this.schrittVorButton.AutoSize = true;
             this.schrittVorButton.Location = new System.Drawing.Point(3, 42);
             this.schrittVorButton.Name = "schrittVorButton";
-            this.schrittVorButton.Size = new System.Drawing.Size(52, 35);
+            this.schrittVorButton.Size = new System.Drawing.Size(44, 35);
             this.schrittVorButton.TabIndex = 0;
             this.schrittVorButton.Text = "vor";
             this.schrittVorButton.UseVisualStyleBackColor = true;
@@ -218,87 +218,56 @@
             // 
             // betrachtenButton
             // 
-            this.betrachtenButton.Location = new System.Drawing.Point(3, 90);
+            this.betrachtenButton.Location = new System.Drawing.Point(7, 92);
             this.betrachtenButton.Name = "betrachtenButton";
-            this.betrachtenButton.Size = new System.Drawing.Size(73, 23);
+            this.betrachtenButton.Size = new System.Drawing.Size(84, 23);
             this.betrachtenButton.TabIndex = 6;
             this.betrachtenButton.Text = "betrachten";
             this.betrachtenButton.UseVisualStyleBackColor = true;
+            this.betrachtenButton.Visible = false;
             this.betrachtenButton.Click += new System.EventHandler(this.viewerOpenButton_Click);
             // 
-            // panel1
+            // contrastButton
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Controls.Add(this.runterLabel);
-            this.panel1.Controls.Add(this.contrastLabel);
-            this.panel1.Controls.Add(this.hochLabel);
-            this.panel1.Location = new System.Drawing.Point(790, 234);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(129, 90);
-            this.panel1.TabIndex = 7;
-            // 
-            // runterLabel
-            // 
-            this.runterLabel.AutoSize = true;
-            this.runterLabel.Location = new System.Drawing.Point(61, 42);
-            this.runterLabel.Name = "runterLabel";
-            this.runterLabel.Size = new System.Drawing.Size(55, 35);
-            this.runterLabel.TabIndex = 3;
-            this.runterLabel.Text = "runter";
-            this.runterLabel.UseVisualStyleBackColor = true;
-            this.runterLabel.Click += new System.EventHandler(this.runterLabel_Click);
-            // 
-            // contrastLabel
-            // 
-            this.contrastLabel.AutoSize = true;
-            this.contrastLabel.BackColor = System.Drawing.Color.Transparent;
-            this.contrastLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.contrastLabel.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.contrastLabel.Location = new System.Drawing.Point(3, 9);
-            this.contrastLabel.Name = "contrastLabel";
-            this.contrastLabel.Size = new System.Drawing.Size(69, 20);
-            this.contrastLabel.TabIndex = 2;
-            this.contrastLabel.Text = "Kontrast";
-            // 
-            // hochLabel
-            // 
-            this.hochLabel.AutoSize = true;
-            this.hochLabel.Location = new System.Drawing.Point(3, 42);
-            this.hochLabel.Name = "hochLabel";
-            this.hochLabel.Size = new System.Drawing.Size(52, 35);
-            this.hochLabel.TabIndex = 0;
-            this.hochLabel.Text = "hoch";
-            this.hochLabel.UseVisualStyleBackColor = true;
-            this.hochLabel.Click += new System.EventHandler(this.hochLabel_Click);
+            this.contrastButton.AutoSize = true;
+            this.contrastButton.Location = new System.Drawing.Point(7, 61);
+            this.contrastButton.Name = "contrastButton";
+            this.contrastButton.Size = new System.Drawing.Size(90, 23);
+            this.contrastButton.TabIndex = 4;
+            this.contrastButton.Text = "Kontrast";
+            this.contrastButton.UseVisualStyleBackColor = true;
+            this.contrastButton.Click += new System.EventHandler(this.contrastButton_Click);
             // 
             // safeButton
             // 
-            this.safeButton.Location = new System.Drawing.Point(3, 61);
+            this.safeButton.Location = new System.Drawing.Point(7, 61);
             this.safeButton.Name = "safeButton";
-            this.safeButton.Size = new System.Drawing.Size(73, 23);
+            this.safeButton.Size = new System.Drawing.Size(84, 23);
             this.safeButton.TabIndex = 8;
             this.safeButton.Text = "speichern";
             this.safeButton.UseVisualStyleBackColor = true;
+            this.safeButton.Visible = false;
             this.safeButton.Click += new System.EventHandler(this.safeButton_Click);
             // 
             // bildSpeichernDialog
             // 
-            this.bildSpeichernDialog.Filter = "JPG|*.jpg";
+            this.bildSpeichernDialog.Filter = "JPG|*.jpg|PNG|*.png";
             // 
             // helligkeitPanel
             // 
             this.helligkeitPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.helligkeitPanel.Controls.Add(this.contrastButton);
             this.helligkeitPanel.Controls.Add(this.helligkeitButton);
             this.helligkeitPanel.Controls.Add(this.helligkeitLabel);
-            this.helligkeitPanel.Location = new System.Drawing.Point(790, 330);
+            this.helligkeitPanel.Location = new System.Drawing.Point(815, 234);
             this.helligkeitPanel.Name = "helligkeitPanel";
-            this.helligkeitPanel.Size = new System.Drawing.Size(129, 76);
+            this.helligkeitPanel.Size = new System.Drawing.Size(119, 94);
             this.helligkeitPanel.TabIndex = 9;
             // 
             // helligkeitButton
             // 
             this.helligkeitButton.AutoSize = true;
-            this.helligkeitButton.Location = new System.Drawing.Point(3, 34);
+            this.helligkeitButton.Location = new System.Drawing.Point(7, 32);
             this.helligkeitButton.Name = "helligkeitButton";
             this.helligkeitButton.Size = new System.Drawing.Size(90, 23);
             this.helligkeitButton.TabIndex = 3;
@@ -321,25 +290,69 @@
             // groesePanel
             // 
             this.groesePanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.groesePanel.Controls.Add(this.verkleinernButton);
+            this.groesePanel.Controls.Add(this.label1);
+            this.groesePanel.Controls.Add(this.aktuelleGroeseLabel);
+            this.groesePanel.Controls.Add(this.viertelButton);
+            this.groesePanel.Controls.Add(this.vierfachButton);
+            this.groesePanel.Controls.Add(this.halbButton);
             this.groesePanel.Controls.Add(this.groeseLabel);
-            this.groesePanel.Controls.Add(this.groeserButton);
-            this.groesePanel.Location = new System.Drawing.Point(790, 416);
+            this.groesePanel.Controls.Add(this.zweifachButton);
+            this.groesePanel.Location = new System.Drawing.Point(815, 334);
             this.groesePanel.Name = "groesePanel";
-            this.groesePanel.Size = new System.Drawing.Size(129, 90);
+            this.groesePanel.Size = new System.Drawing.Size(119, 171);
             this.groesePanel.TabIndex = 8;
             // 
-            // verkleinernButton
+            // label1
             // 
-            this.verkleinernButton.AutoSize = true;
-            this.verkleinernButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.verkleinernButton.Location = new System.Drawing.Point(61, 42);
-            this.verkleinernButton.Name = "verkleinernButton";
-            this.verkleinernButton.Size = new System.Drawing.Size(55, 35);
-            this.verkleinernButton.TabIndex = 3;
-            this.verkleinernButton.Text = "-";
-            this.verkleinernButton.UseVisualStyleBackColor = true;
-            this.verkleinernButton.Click += new System.EventHandler(this.verkleinernButton_Click);
+            this.label1.Location = new System.Drawing.Point(7, 87);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(89, 17);
+            this.label1.TabIndex = 7;
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // aktuelleGroeseLabel
+            // 
+            this.aktuelleGroeseLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.aktuelleGroeseLabel.Location = new System.Drawing.Point(6, 87);
+            this.aktuelleGroeseLabel.Name = "aktuelleGroeseLabel";
+            this.aktuelleGroeseLabel.Size = new System.Drawing.Size(80, 0);
+            this.aktuelleGroeseLabel.TabIndex = 6;
+            this.aktuelleGroeseLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // viertelButton
+            // 
+            this.viertelButton.AutoSize = true;
+            this.viertelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.viertelButton.Location = new System.Drawing.Point(6, 136);
+            this.viertelButton.Name = "viertelButton";
+            this.viertelButton.Size = new System.Drawing.Size(90, 23);
+            this.viertelButton.TabIndex = 5;
+            this.viertelButton.UseVisualStyleBackColor = true;
+            this.viertelButton.Click += new System.EventHandler(this.viertelButton_Click);
+            // 
+            // vierfachButton
+            // 
+            this.vierfachButton.AutoSize = true;
+            this.vierfachButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.vierfachButton.Location = new System.Drawing.Point(6, 32);
+            this.vierfachButton.Name = "vierfachButton";
+            this.vierfachButton.Size = new System.Drawing.Size(90, 23);
+            this.vierfachButton.TabIndex = 4;
+            this.vierfachButton.UseVisualStyleBackColor = true;
+            this.vierfachButton.Click += new System.EventHandler(this.vierfachButton_Click);
+            // 
+            // halbButton
+            // 
+            this.halbButton.AutoSize = true;
+            this.halbButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.halbButton.Location = new System.Drawing.Point(6, 107);
+            this.halbButton.Name = "halbButton";
+            this.halbButton.Size = new System.Drawing.Size(90, 23);
+            this.halbButton.TabIndex = 3;
+            this.halbButton.UseVisualStyleBackColor = true;
+            this.halbButton.Click += new System.EventHandler(this.verkleinernButton_Click);
             // 
             // groeseLabel
             // 
@@ -349,21 +362,20 @@
             this.groeseLabel.ForeColor = System.Drawing.Color.CornflowerBlue;
             this.groeseLabel.Location = new System.Drawing.Point(3, 9);
             this.groeseLabel.Name = "groeseLabel";
-            this.groeseLabel.Size = new System.Drawing.Size(55, 20);
+            this.groeseLabel.Size = new System.Drawing.Size(75, 20);
             this.groeseLabel.TabIndex = 2;
-            this.groeseLabel.Text = "Größe";
+            this.groeseLabel.Text = "Skalieren";
             // 
-            // groeserButton
+            // zweifachButton
             // 
-            this.groeserButton.AutoSize = true;
-            this.groeserButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groeserButton.Location = new System.Drawing.Point(3, 42);
-            this.groeserButton.Name = "groeserButton";
-            this.groeserButton.Size = new System.Drawing.Size(52, 35);
-            this.groeserButton.TabIndex = 0;
-            this.groeserButton.Text = "+";
-            this.groeserButton.UseVisualStyleBackColor = true;
-            this.groeserButton.Click += new System.EventHandler(this.groeserButton_Click);
+            this.zweifachButton.AutoSize = true;
+            this.zweifachButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.zweifachButton.Location = new System.Drawing.Point(6, 61);
+            this.zweifachButton.Name = "zweifachButton";
+            this.zweifachButton.Size = new System.Drawing.Size(90, 23);
+            this.zweifachButton.TabIndex = 0;
+            this.zweifachButton.UseVisualStyleBackColor = true;
+            this.zweifachButton.Click += new System.EventHandler(this.groeserButton_Click);
             // 
             // bildPanel
             // 
@@ -374,7 +386,7 @@
             this.bildPanel.Controls.Add(this.safeButton);
             this.bildPanel.Location = new System.Drawing.Point(12, 409);
             this.bildPanel.Name = "bildPanel";
-            this.bildPanel.Size = new System.Drawing.Size(85, 122);
+            this.bildPanel.Size = new System.Drawing.Size(110, 122);
             this.bildPanel.TabIndex = 4;
             // 
             // bildLabel
@@ -393,11 +405,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(931, 543);
+            this.ClientSize = new System.Drawing.Size(944, 539);
             this.Controls.Add(this.bildPanel);
             this.Controls.Add(this.groesePanel);
             this.Controls.Add(this.helligkeitPanel);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.schrittePanel);
             this.Controls.Add(this.filterPanel);
             this.Controls.Add(this.panelPictureBox);
@@ -405,13 +416,12 @@
             this.Name = "Form1";
             this.Text = "Hallo";
             this.panelPictureBox.ResumeLayout(false);
+            this.panelPictureBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.filterPanel.ResumeLayout(false);
             this.filterPanel.PerformLayout();
             this.schrittePanel.ResumeLayout(false);
             this.schrittePanel.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.helligkeitPanel.ResumeLayout(false);
             this.helligkeitPanel.PerformLayout();
             this.groesePanel.ResumeLayout(false);
@@ -439,22 +449,23 @@
         private System.Windows.Forms.Button pseudoColorButton;
         private System.Windows.Forms.Button sepiaFarbenButton;
         private System.Windows.Forms.Button betrachtenButton;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button runterLabel;
-        private System.Windows.Forms.Label contrastLabel;
-        private System.Windows.Forms.Button hochLabel;
         private System.Windows.Forms.Button safeButton;
         private System.Windows.Forms.SaveFileDialog bildSpeichernDialog;
         private System.Windows.Forms.Panel helligkeitPanel;
         private System.Windows.Forms.Label helligkeitLabel;
         private System.Windows.Forms.Panel groesePanel;
-        private System.Windows.Forms.Button verkleinernButton;
+        private System.Windows.Forms.Button halbButton;
         private System.Windows.Forms.Label groeseLabel;
-        private System.Windows.Forms.Button groeserButton;
+        private System.Windows.Forms.Button zweifachButton;
         private System.Windows.Forms.Panel bildPanel;
         private System.Windows.Forms.Label bildLabel;
         public System.Windows.Forms.Panel panelPictureBox;
         private System.Windows.Forms.Button helligkeitButton;
+        private System.Windows.Forms.Button contrastButton;
+        private System.Windows.Forms.Button vierfachButton;
+        private System.Windows.Forms.Button viertelButton;
+        private System.Windows.Forms.Label aktuelleGroeseLabel;
+        private System.Windows.Forms.Label label1;
     }
 }
 

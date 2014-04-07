@@ -40,7 +40,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(12, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(860, 495);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -49,7 +49,7 @@
             // 
             // trackBar1
             // 
-            this.trackBar1.Location = new System.Drawing.Point(312, 504);
+            this.trackBar1.Location = new System.Drawing.Point(312, 513);
             this.trackBar1.Maximum = 100;
             this.trackBar1.Minimum = -100;
             this.trackBar1.Name = "trackBar1";
@@ -60,7 +60,7 @@
             // 
             // plusButton
             // 
-            this.plusButton.Location = new System.Drawing.Point(578, 513);
+            this.plusButton.Location = new System.Drawing.Point(578, 522);
             this.plusButton.Name = "plusButton";
             this.plusButton.Size = new System.Drawing.Size(75, 23);
             this.plusButton.TabIndex = 2;
@@ -70,7 +70,7 @@
             // 
             // minusButton
             // 
-            this.minusButton.Location = new System.Drawing.Point(231, 513);
+            this.minusButton.Location = new System.Drawing.Point(231, 522);
             this.minusButton.Name = "minusButton";
             this.minusButton.Size = new System.Drawing.Size(75, 23);
             this.minusButton.TabIndex = 3;
@@ -81,7 +81,7 @@
             // speichernButton
             // 
             this.speichernButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.speichernButton.Location = new System.Drawing.Point(12, 504);
+            this.speichernButton.Location = new System.Drawing.Point(12, 513);
             this.speichernButton.Name = "speichernButton";
             this.speichernButton.Size = new System.Drawing.Size(100, 45);
             this.speichernButton.TabIndex = 4;
@@ -93,20 +93,19 @@
             // cancelButton
             // 
             this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cancelButton.Location = new System.Drawing.Point(772, 504);
+            this.cancelButton.Location = new System.Drawing.Point(772, 513);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(100, 45);
             this.cancelButton.TabIndex = 5;
             this.cancelButton.Text = "abbrechen";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Visible = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // formhelligkeit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(884, 561);
+            this.ClientSize = new System.Drawing.Size(885, 567);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.speichernButton);
             this.Controls.Add(this.minusButton);
