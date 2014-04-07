@@ -23,15 +23,27 @@ namespace picture_editor
         //----------------------------------------------------------------------------------------------------------------------
         //Variables
 
-        Bitmap geladenesBild;
+        public Bitmap geladenesBild;
+        public Bitmap _geladenesBild
+        {
+            get{return geladenesBild;}
+            set { geladenesBild = value; }
+        }
+        
         int maxSchritte = 100;
         Bitmap[] zwischenSchritte = new Bitmap[100];
         int zwischenSchrittCounter = 0;
 
+        formhelligkeit hellBearbeiten;
         
 
         //----------------------------------------------------------------------------------------------------------------------
         //eigene Funktionen
+
+        public void setPictureBox(Bitmap bitIn)
+        {
+            pictureBox1.Image = bitIn;
+        }
 
         //Schwarz Weiß Filter
         private void change_to_greymap()    //noch sehr ineffizient
@@ -219,7 +231,7 @@ namespace picture_editor
                         Blue = 0;
 
                     Color newColor = Color.FromArgb((int)Red, (int)Green, (int)Blue);
-
+                    
                     neuerKontrast.SetPixel(x, y, newColor);
                 }
             }
@@ -298,8 +310,14 @@ namespace picture_editor
         }
 
         //Helligkeit Panel
-        private Bitmap set_brightness(int value)
+        private void set_brightness()
         {
+            hellBearbeiten = new formhelligkeit(geladenesBild,this);
+            hellBearbeiten.Show();
+
+            //geladenesBild = hellBearbeiten.original;
+            //pictureBox1.Image = geladenesBild;
+            /*alt
             Bitmap tempBitmap = (Bitmap)pictureBox1.Image;
             float finalValue = (float)value / 255.0f;
             Bitmap newBitmap = new Bitmap(tempBitmap.Width, tempBitmap.Height);
@@ -318,18 +336,20 @@ namespace picture_editor
 
             ImageAttributes attribute = new ImageAttributes();
             attribute.SetColorMatrix(newColorMatrix);
-
+            
             gr.DrawImage(tempBitmap, new Rectangle(0, 0, tempBitmap.Width, tempBitmap.Height), 0, 0, tempBitmap.Width, tempBitmap.Height, GraphicsUnit.Pixel, attribute);
 
             attribute.Dispose();
             gr.Dispose();
             trackBar1.Value = 0;
-            return newBitmap;
+            return newBitmap;*/
         }
-        private void trackBar1_Scroll(object sender, EventArgs e)
+        private void helligkeitButton_Click(object sender, EventArgs e)
         {
-            Debug.WriteLine(trackBar1.Value);
-            pictureBox1.Image = set_brightness(trackBar1.Value);
+            if (bildVorhanden())
+            {
+                set_brightness();
+            }
         }
         
         //Sonstiges
@@ -347,6 +367,8 @@ namespace picture_editor
         {
             colorDialog1.ShowDialog();
         }
+
+        
 
 
         

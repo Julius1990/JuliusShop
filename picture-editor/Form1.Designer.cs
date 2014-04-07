@@ -51,7 +51,7 @@
             this.safeButton = new System.Windows.Forms.Button();
             this.bildSpeichernDialog = new System.Windows.Forms.SaveFileDialog();
             this.helligkeitPanel = new System.Windows.Forms.Panel();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.helligkeitButton = new System.Windows.Forms.Button();
             this.helligkeitLabel = new System.Windows.Forms.Label();
             this.groesePanel = new System.Windows.Forms.Panel();
             this.verkleinernButton = new System.Windows.Forms.Button();
@@ -65,16 +65,15 @@
             this.schrittePanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.helligkeitPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.groesePanel.SuspendLayout();
             this.bildPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // openColorDialoButton
             // 
-            this.openColorDialoButton.Location = new System.Drawing.Point(-2, 12);
+            this.openColorDialoButton.Location = new System.Drawing.Point(12, 12);
             this.openColorDialoButton.Name = "openColorDialoButton";
-            this.openColorDialoButton.Size = new System.Drawing.Size(100, 23);
+            this.openColorDialoButton.Size = new System.Drawing.Size(80, 23);
             this.openColorDialoButton.TabIndex = 0;
             this.openColorDialoButton.Text = "Color Dialog";
             this.openColorDialoButton.UseVisualStyleBackColor = true;
@@ -108,10 +107,10 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 50);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.Size = new System.Drawing.Size(673, 511);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -289,23 +288,23 @@
             // helligkeitPanel
             // 
             this.helligkeitPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.helligkeitPanel.Controls.Add(this.trackBar1);
+            this.helligkeitPanel.Controls.Add(this.helligkeitButton);
             this.helligkeitPanel.Controls.Add(this.helligkeitLabel);
             this.helligkeitPanel.Location = new System.Drawing.Point(790, 330);
             this.helligkeitPanel.Name = "helligkeitPanel";
             this.helligkeitPanel.Size = new System.Drawing.Size(129, 76);
             this.helligkeitPanel.TabIndex = 9;
             // 
-            // trackBar1
+            // helligkeitButton
             // 
-            this.trackBar1.Location = new System.Drawing.Point(-2, 33);
-            this.trackBar1.Minimum = -10;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(129, 45);
-            this.trackBar1.TabIndex = 3;
-            this.trackBar1.TabStop = false;
-            this.trackBar1.TickFrequency = 5;
-            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            this.helligkeitButton.AutoSize = true;
+            this.helligkeitButton.Location = new System.Drawing.Point(3, 34);
+            this.helligkeitButton.Name = "helligkeitButton";
+            this.helligkeitButton.Size = new System.Drawing.Size(90, 23);
+            this.helligkeitButton.TabIndex = 3;
+            this.helligkeitButton.Text = "Helligkeit";
+            this.helligkeitButton.UseVisualStyleBackColor = true;
+            this.helligkeitButton.Click += new System.EventHandler(this.helligkeitButton_Click);
             // 
             // helligkeitLabel
             // 
@@ -315,9 +314,9 @@
             this.helligkeitLabel.ForeColor = System.Drawing.Color.CornflowerBlue;
             this.helligkeitLabel.Location = new System.Drawing.Point(3, 9);
             this.helligkeitLabel.Name = "helligkeitLabel";
-            this.helligkeitLabel.Size = new System.Drawing.Size(73, 20);
+            this.helligkeitLabel.Size = new System.Drawing.Size(105, 20);
             this.helligkeitLabel.TabIndex = 2;
-            this.helligkeitLabel.Text = "Helligkeit";
+            this.helligkeitLabel.Text = "Einstellungen";
             // 
             // groesePanel
             // 
@@ -406,7 +405,6 @@
             this.Name = "Form1";
             this.Text = "Hallo";
             this.panelPictureBox.ResumeLayout(false);
-            this.panelPictureBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.filterPanel.ResumeLayout(false);
             this.filterPanel.PerformLayout();
@@ -416,7 +414,6 @@
             this.panel1.PerformLayout();
             this.helligkeitPanel.ResumeLayout(false);
             this.helligkeitPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.groesePanel.ResumeLayout(false);
             this.groesePanel.PerformLayout();
             this.bildPanel.ResumeLayout(false);
@@ -431,7 +428,6 @@
         private System.Windows.Forms.Button openColorDialoButton;
         private System.Windows.Forms.Button loadPictureButton;
         private System.Windows.Forms.OpenFileDialog bildÖffnenDialog;
-        private System.Windows.Forms.Panel panelPictureBox;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel filterPanel;
         private System.Windows.Forms.Button blackWhiteButton;
@@ -450,7 +446,6 @@
         private System.Windows.Forms.Button safeButton;
         private System.Windows.Forms.SaveFileDialog bildSpeichernDialog;
         private System.Windows.Forms.Panel helligkeitPanel;
-        private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Label helligkeitLabel;
         private System.Windows.Forms.Panel groesePanel;
         private System.Windows.Forms.Button verkleinernButton;
@@ -458,6 +453,8 @@
         private System.Windows.Forms.Button groeserButton;
         private System.Windows.Forms.Panel bildPanel;
         private System.Windows.Forms.Label bildLabel;
+        public System.Windows.Forms.Panel panelPictureBox;
+        private System.Windows.Forms.Button helligkeitButton;
     }
 }
 
