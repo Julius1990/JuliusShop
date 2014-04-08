@@ -50,16 +50,17 @@ namespace picture_editor
         //Schwarz Weiß Filter
         private void change_to_greymap()    //noch sehr ineffizient
         {
-            Bitmap greyBitmap = new Bitmap(pictureBox1.Image.Width, pictureBox1.Image.Height);
+            Bitmap greyBitmap = (Bitmap)pictureBox1.Image; //new Bitmap(pictureBox1.Image.Width, pictureBox1.Image.Height);
             Bitmap origBitmap = (Bitmap)pictureBox1.Image;
+
             //läuft jedes Pixel einzeln durch
             for (int x = 0; x < pictureBox1.Image.Width; x++)
             {
                 for (int y = 0; y < pictureBox1.Image.Height; y++)
                 {
                     Color orig = origBitmap.GetPixel(x, y);
-                    //Diese Werte sind aus dem Internet
-                    int grey = (int)((orig.R * 0.3) + (orig.G * 0.59) + (orig.B * 0.11));
+                    //Diese Werte sind aus der Vorlesung
+                    int grey = (int)((orig.R * 0.3) + (orig.G * 0.6) + (orig.B * 0.1));
                     //daraus wird dann eine neue Farbe gemacht
                     Color neueFarbe = Color.FromArgb(grey, grey, grey);
                     //und das aktuelle Pixel damit überschrieben
@@ -76,6 +77,7 @@ namespace picture_editor
                 change_to_greymap();
             }
         }
+
 
         //Pseudo Farben
         private void pseudo_coloring()
@@ -153,6 +155,35 @@ namespace picture_editor
             {
                 sepia_filter();
             }
+        }
+
+        //Negativ
+        private void invertierenButton_Click(object sender, EventArgs e)
+        {
+            if (bildVorhanden())
+            {
+                negativBerechnen();
+            }
+        }
+        private void negativBerechnen()
+        {
+            Bitmap orig = geladenesBild;
+            Bitmap inv = new Bitmap(orig.Width, orig.Height);
+            for (int x = 0; x < orig.Width; x++)
+            {
+                for (int y = 0; y < orig.Height; y++)
+                {
+                    Color oriCol = orig.GetPixel(x, y);
+                    int red = 255 - oriCol.R;
+                    int green = 255 - oriCol.G;
+                    int blue = 255 - oriCol.B;
+                    Color invCol = Color.FromArgb(red, green, blue);
+                    inv.SetPixel(x, y, invCol);
+                }
+            }
+            geladenesBild = inv;
+            pictureBox1.Image = inv;
+            speicherZwischen(inv);
         }
 
         //Schritte Panel
@@ -343,30 +374,110 @@ namespace picture_editor
             colorDialog1.ShowDialog();
         }
 
-        
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (pictureBox1.Image != null)
+            {
+                Bitmap box = (Bitmap)pictureBox1.Image;
 
-        
+                if (pictureBox1.SizeMode == PictureBoxSizeMode.Zoom)
+                {
+                    float seitenVerhaeltnisBild = (float)pictureBox1.Image.Width / pictureBox1.Image.Height;
+                    float seitenVerhaeltnisBox = (float)pictureBox1.Width / pictureBox1.Height;
 
+                    //maus position einlesen
+                    float newX = (float)e.X;
+                    float newY = (float)e.Y;
 
-        
+                    //Bild füllt komplette Breite
+                    if (seitenVerhaeltnisBild > seitenVerhaeltnisBox)
+                    {
+                        float ratioWidth = (float)pictureBox1.Image.Width / (float)pictureBox1.Width;
 
+                        newX *= ratioWidth;
 
-        
+                        float scale = (float)pictureBox1.Width / (float)pictureBox1.Image.Width;
+                        float displayHeight = scale * (float)pictureBox1.Image.Height;
+                        float diffHeight = (float)pictureBox1.Height - (float)displayHeight;
 
-        
+                        diffHeight /= 2;
 
-        
+                        newY -= diffHeight;
+                        newY /= scale;
+                    }
+                    //Bild füllt komplette Höhe
+                    else
+                    {
+                        float ratioHeight = (float)pictureBox1.Image.Height / (float)pictureBox1.Height;
 
-        
+                        newY *= ratioHeight;
 
-        
+                        float scale = (float)pictureBox1.Height / (float)pictureBox1.Image.Height;
+                        float displayWidth = scale * (float)pictureBox1.Image.Width;
+                        float diffWidth = (float)pictureBox1.Width - (float)displayWidth;
 
-        
+                        diffWidth /= 2;
 
-        
+                        newX -= diffWidth;
+                        newX /= scale;
+                    }
+                    if (newX > 0 && newX < box.Width && newY > 0 && newY < box.Height)
+                    {
+                        Color neu = box.GetPixel((int)newX, (int)newY);
+                        pictureBox2.BackColor = neu;
+                    }
 
-        
+                }
+                else if (pictureBox1.SizeMode == PictureBoxSizeMode.CenterImage)
+                {
+                    int diffWidth = pictureBox1.Width - pictureBox1.Image.Width;
+                    int diffHeight = pictureBox1.Height - pictureBox1.Image.Height;
 
+                    diffWidth /= 2;
+                    diffHeight /= 2;
+
+                    int coordX = e.X;
+                    int coordY = e.Y;
+
+                    coordX -= diffWidth;
+                    coordY -= diffHeight;
+
+                    if (coordX > 0 && coordX < (box.Width + 1) && coordY > 0 && coordY < (box.Height + 1))
+                    {
+                        Color neu = box.GetPixel(coordX, coordY);
+                        pictureBox2.BackColor = neu;
+                    }
+                }
+                else if (pictureBox1.SizeMode == PictureBoxSizeMode.AutoSize)
+                {
+                    Color auto = box.GetPixel(e.X, e.Y);
+                    pictureBox2.BackColor = auto;
+                }
+            }
+        }
+
+        private void autosizeButton_Click(object sender, EventArgs e)
+        {
+            pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
+        }
+
+        private void normalButton_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Size = new System.Drawing.Size(673, 510);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Normal;
+        }
+
+        private void zoomButton_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Size = new System.Drawing.Size(673, 510);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+        }
+
+        private void centerButton_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Size = new System.Drawing.Size(673, 510);
+            pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+        }
 
     }
 }

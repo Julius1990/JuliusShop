@@ -30,12 +30,12 @@ namespace picture_editor
         private void InitializeComponent()
         {
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.openColorDialoButton = new System.Windows.Forms.Button();
             this.loadPictureButton = new System.Windows.Forms.Button();
             this.bildÖffnenDialog = new System.Windows.Forms.OpenFileDialog();
             this.panelPictureBox = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.filterPanel = new System.Windows.Forms.Panel();
+            this.invertierenButton = new System.Windows.Forms.Button();
             this.sepiaFarbenButton = new System.Windows.Forms.Button();
             this.pseudoColorButton = new System.Windows.Forms.Button();
             this.filterLabel = new System.Windows.Forms.Label();
@@ -61,6 +61,12 @@ namespace picture_editor
             this.zweifachButton = new System.Windows.Forms.Button();
             this.bildPanel = new System.Windows.Forms.Panel();
             this.bildLabel = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.centerButton = new System.Windows.Forms.Button();
+            this.zoomButton = new System.Windows.Forms.Button();
+            this.pictureBoxPanel = new System.Windows.Forms.Label();
+            this.autosizeButton = new System.Windows.Forms.Button();
             this.panelPictureBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.filterPanel.SuspendLayout();
@@ -68,16 +74,9 @@ namespace picture_editor
             this.helligkeitPanel.SuspendLayout();
             this.groesePanel.SuspendLayout();
             this.bildPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // openColorDialoButton
-            // 
-            this.openColorDialoButton.Location = new System.Drawing.Point(12, 12);
-            this.openColorDialoButton.Name = "openColorDialoButton";
-            this.openColorDialoButton.Size = new System.Drawing.Size(75, 23);
-            this.openColorDialoButton.TabIndex = 10;
-            this.openColorDialoButton.Text = "Color Dialog";
-            this.openColorDialoButton.Click += new System.EventHandler(this.openColorDialoButton_Click);
             // 
             // loadPictureButton
             // 
@@ -113,23 +112,36 @@ namespace picture_editor
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             // 
             // filterPanel
             // 
             this.filterPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.filterPanel.Controls.Add(this.invertierenButton);
             this.filterPanel.Controls.Add(this.sepiaFarbenButton);
             this.filterPanel.Controls.Add(this.pseudoColorButton);
             this.filterPanel.Controls.Add(this.filterLabel);
             this.filterPanel.Controls.Add(this.blackWhiteButton);
             this.filterPanel.Location = new System.Drawing.Point(815, 108);
             this.filterPanel.Name = "filterPanel";
-            this.filterPanel.Size = new System.Drawing.Size(119, 120);
+            this.filterPanel.Size = new System.Drawing.Size(119, 146);
             this.filterPanel.TabIndex = 5;
+            // 
+            // invertierenButton
+            // 
+            this.invertierenButton.AutoSize = true;
+            this.invertierenButton.Location = new System.Drawing.Point(7, 116);
+            this.invertierenButton.Name = "invertierenButton";
+            this.invertierenButton.Size = new System.Drawing.Size(89, 23);
+            this.invertierenButton.TabIndex = 4;
+            this.invertierenButton.Text = "Negativ";
+            this.invertierenButton.UseVisualStyleBackColor = true;
+            this.invertierenButton.Click += new System.EventHandler(this.invertierenButton_Click);
             // 
             // sepiaFarbenButton
             // 
             this.sepiaFarbenButton.AutoSize = true;
-            this.sepiaFarbenButton.Location = new System.Drawing.Point(7, 90);
+            this.sepiaFarbenButton.Location = new System.Drawing.Point(7, 87);
             this.sepiaFarbenButton.Name = "sepiaFarbenButton";
             this.sepiaFarbenButton.Size = new System.Drawing.Size(89, 23);
             this.sepiaFarbenButton.TabIndex = 3;
@@ -259,7 +271,7 @@ namespace picture_editor
             this.helligkeitPanel.Controls.Add(this.contrastButton);
             this.helligkeitPanel.Controls.Add(this.helligkeitButton);
             this.helligkeitPanel.Controls.Add(this.helligkeitLabel);
-            this.helligkeitPanel.Location = new System.Drawing.Point(815, 234);
+            this.helligkeitPanel.Location = new System.Drawing.Point(815, 260);
             this.helligkeitPanel.Name = "helligkeitPanel";
             this.helligkeitPanel.Size = new System.Drawing.Size(119, 94);
             this.helligkeitPanel.TabIndex = 9;
@@ -297,9 +309,9 @@ namespace picture_editor
             this.groesePanel.Controls.Add(this.halbButton);
             this.groesePanel.Controls.Add(this.groeseLabel);
             this.groesePanel.Controls.Add(this.zweifachButton);
-            this.groesePanel.Location = new System.Drawing.Point(815, 334);
+            this.groesePanel.Location = new System.Drawing.Point(7, 266);
             this.groesePanel.Name = "groesePanel";
-            this.groesePanel.Size = new System.Drawing.Size(119, 171);
+            this.groesePanel.Size = new System.Drawing.Size(105, 170);
             this.groesePanel.TabIndex = 8;
             // 
             // label1
@@ -315,9 +327,9 @@ namespace picture_editor
             this.aktuelleGroeseLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.aktuelleGroeseLabel.Location = new System.Drawing.Point(6, 87);
+            this.aktuelleGroeseLabel.Location = new System.Drawing.Point(10, 87);
             this.aktuelleGroeseLabel.Name = "aktuelleGroeseLabel";
-            this.aktuelleGroeseLabel.Size = new System.Drawing.Size(80, 0);
+            this.aktuelleGroeseLabel.Size = new System.Drawing.Size(62, 0);
             this.aktuelleGroeseLabel.TabIndex = 6;
             this.aktuelleGroeseLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -325,9 +337,9 @@ namespace picture_editor
             // 
             this.viertelButton.AutoSize = true;
             this.viertelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viertelButton.Location = new System.Drawing.Point(6, 136);
+            this.viertelButton.Location = new System.Drawing.Point(7, 136);
             this.viertelButton.Name = "viertelButton";
-            this.viertelButton.Size = new System.Drawing.Size(90, 23);
+            this.viertelButton.Size = new System.Drawing.Size(89, 23);
             this.viertelButton.TabIndex = 5;
             this.viertelButton.UseVisualStyleBackColor = true;
             this.viertelButton.Click += new System.EventHandler(this.viertelButton_Click);
@@ -336,9 +348,9 @@ namespace picture_editor
             // 
             this.vierfachButton.AutoSize = true;
             this.vierfachButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.vierfachButton.Location = new System.Drawing.Point(6, 32);
+            this.vierfachButton.Location = new System.Drawing.Point(7, 32);
             this.vierfachButton.Name = "vierfachButton";
-            this.vierfachButton.Size = new System.Drawing.Size(90, 23);
+            this.vierfachButton.Size = new System.Drawing.Size(89, 23);
             this.vierfachButton.TabIndex = 4;
             this.vierfachButton.UseVisualStyleBackColor = true;
             this.vierfachButton.Click += new System.EventHandler(this.vierfachButton_Click);
@@ -347,9 +359,9 @@ namespace picture_editor
             // 
             this.halbButton.AutoSize = true;
             this.halbButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.halbButton.Location = new System.Drawing.Point(6, 107);
+            this.halbButton.Location = new System.Drawing.Point(7, 107);
             this.halbButton.Name = "halbButton";
-            this.halbButton.Size = new System.Drawing.Size(90, 23);
+            this.halbButton.Size = new System.Drawing.Size(89, 23);
             this.halbButton.TabIndex = 3;
             this.halbButton.UseVisualStyleBackColor = true;
             this.halbButton.Click += new System.EventHandler(this.verkleinernButton_Click);
@@ -370,7 +382,7 @@ namespace picture_editor
             // 
             this.zweifachButton.AutoSize = true;
             this.zweifachButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.zweifachButton.Location = new System.Drawing.Point(6, 61);
+            this.zweifachButton.Location = new System.Drawing.Point(7, 61);
             this.zweifachButton.Name = "zweifachButton";
             this.zweifachButton.Size = new System.Drawing.Size(90, 23);
             this.zweifachButton.TabIndex = 0;
@@ -384,7 +396,7 @@ namespace picture_editor
             this.bildPanel.Controls.Add(this.betrachtenButton);
             this.bildPanel.Controls.Add(this.loadPictureButton);
             this.bildPanel.Controls.Add(this.safeButton);
-            this.bildPanel.Location = new System.Drawing.Point(12, 409);
+            this.bildPanel.Location = new System.Drawing.Point(7, 12);
             this.bildPanel.Name = "bildPanel";
             this.bildPanel.Size = new System.Drawing.Size(110, 122);
             this.bildPanel.TabIndex = 4;
@@ -401,20 +413,87 @@ namespace picture_editor
             this.bildLabel.TabIndex = 2;
             this.bildLabel.Text = "Bild";
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(815, 360);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(115, 82);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 11;
+            this.pictureBox2.TabStop = false;
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.centerButton);
+            this.panel1.Controls.Add(this.zoomButton);
+            this.panel1.Controls.Add(this.pictureBoxPanel);
+            this.panel1.Controls.Add(this.autosizeButton);
+            this.panel1.Location = new System.Drawing.Point(7, 140);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(105, 120);
+            this.panel1.TabIndex = 12;
+            // 
+            // centerButton
+            // 
+            this.centerButton.AutoSize = true;
+            this.centerButton.Location = new System.Drawing.Point(7, 88);
+            this.centerButton.Name = "centerButton";
+            this.centerButton.Size = new System.Drawing.Size(89, 23);
+            this.centerButton.TabIndex = 4;
+            this.centerButton.Text = "Zoom";
+            this.centerButton.UseVisualStyleBackColor = true;
+            this.centerButton.Click += new System.EventHandler(this.centerButton_Click);
+            // 
+            // zoomButton
+            // 
+            this.zoomButton.AutoSize = true;
+            this.zoomButton.Location = new System.Drawing.Point(7, 59);
+            this.zoomButton.Name = "zoomButton";
+            this.zoomButton.Size = new System.Drawing.Size(89, 23);
+            this.zoomButton.TabIndex = 3;
+            this.zoomButton.Text = "Eingepasst";
+            this.zoomButton.UseVisualStyleBackColor = true;
+            this.zoomButton.Click += new System.EventHandler(this.zoomButton_Click);
+            // 
+            // pictureBoxPanel
+            // 
+            this.pictureBoxPanel.AutoSize = true;
+            this.pictureBoxPanel.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pictureBoxPanel.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.pictureBoxPanel.Location = new System.Drawing.Point(3, 7);
+            this.pictureBoxPanel.Name = "pictureBoxPanel";
+            this.pictureBoxPanel.Size = new System.Drawing.Size(76, 20);
+            this.pictureBoxPanel.TabIndex = 1;
+            this.pictureBoxPanel.Text = "Anzeigen";
+            // 
+            // autosizeButton
+            // 
+            this.autosizeButton.AutoSize = true;
+            this.autosizeButton.Location = new System.Drawing.Point(7, 30);
+            this.autosizeButton.Name = "autosizeButton";
+            this.autosizeButton.Size = new System.Drawing.Size(89, 23);
+            this.autosizeButton.TabIndex = 0;
+            this.autosizeButton.Text = "Volle Größe";
+            this.autosizeButton.UseVisualStyleBackColor = true;
+            this.autosizeButton.Click += new System.EventHandler(this.autosizeButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(944, 539);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.bildPanel);
             this.Controls.Add(this.groesePanel);
             this.Controls.Add(this.helligkeitPanel);
             this.Controls.Add(this.schrittePanel);
             this.Controls.Add(this.filterPanel);
             this.Controls.Add(this.panelPictureBox);
-            this.Controls.Add(this.openColorDialoButton);
             this.Name = "Form1";
-            this.Text = "Hallo";
+            this.Text = "Photoshop für Arme";
             this.panelPictureBox.ResumeLayout(false);
             this.panelPictureBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -428,6 +507,9 @@ namespace picture_editor
             this.groesePanel.PerformLayout();
             this.bildPanel.ResumeLayout(false);
             this.bildPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -435,7 +517,6 @@ namespace picture_editor
         #endregion
 
         private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.Button openColorDialoButton;
         private System.Windows.Forms.Button loadPictureButton;
         private System.Windows.Forms.OpenFileDialog bildÖffnenDialog;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -466,6 +547,13 @@ namespace picture_editor
         private System.Windows.Forms.Button viertelButton;
         private System.Windows.Forms.Label aktuelleGroeseLabel;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button invertierenButton;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button centerButton;
+        private System.Windows.Forms.Button zoomButton;
+        private System.Windows.Forms.Label pictureBoxPanel;
+        private System.Windows.Forms.Button autosizeButton;
     }
 }
 
