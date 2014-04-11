@@ -30,7 +30,6 @@ namespace picture_editor
         private void InitializeComponent()
         {
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.loadPictureButton = new System.Windows.Forms.Button();
             this.bildÖffnenDialog = new System.Windows.Forms.OpenFileDialog();
             this.panelPictureBox = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -40,18 +39,8 @@ namespace picture_editor
             this.pseudoColorButton = new System.Windows.Forms.Button();
             this.filterLabel = new System.Windows.Forms.Label();
             this.blackWhiteButton = new System.Windows.Forms.Button();
-            this.schrittePanel = new System.Windows.Forms.Panel();
-            this.schrittZurueckButton = new System.Windows.Forms.Button();
-            this.schrittLabel = new System.Windows.Forms.Label();
-            this.schrittVorButton = new System.Windows.Forms.Button();
-            this.betrachtenButton = new System.Windows.Forms.Button();
-            this.contrastButton = new System.Windows.Forms.Button();
-            this.safeButton = new System.Windows.Forms.Button();
             this.bildSpeichernDialog = new System.Windows.Forms.SaveFileDialog();
-            this.helligkeitPanel = new System.Windows.Forms.Panel();
-            this.helligkeitButton = new System.Windows.Forms.Button();
-            this.helligkeitLabel = new System.Windows.Forms.Label();
-            this.groesePanel = new System.Windows.Forms.Panel();
+            this.skalierenPanel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.aktuelleGroeseLabel = new System.Windows.Forms.Label();
             this.viertelButton = new System.Windows.Forms.Button();
@@ -59,34 +48,63 @@ namespace picture_editor
             this.halbButton = new System.Windows.Forms.Button();
             this.groeseLabel = new System.Windows.Forms.Label();
             this.zweifachButton = new System.Windows.Forms.Button();
-            this.bildPanel = new System.Windows.Forms.Panel();
-            this.bildLabel = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.anzeigenPanel = new System.Windows.Forms.Panel();
+            this.zoomOutButton = new System.Windows.Forms.Button();
+            this.zoomInButton = new System.Windows.Forms.Button();
             this.centerButton = new System.Windows.Forms.Button();
             this.zoomButton = new System.Windows.Forms.Button();
             this.pictureBoxPanel = new System.Windows.Forms.Label();
             this.autosizeButton = new System.Windows.Forms.Button();
+            this.histogrammPanel = new System.Windows.Forms.Panel();
+            this.graukeilPictureBox = new System.Windows.Forms.PictureBox();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.dateiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.öffnenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.speichernToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.schließenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.schrittToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rückgängigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.wiederholenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bearbeitenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helligkeitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kontrastToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.brightnessTextBox = new System.Windows.Forms.TextBox();
+            this.saturationTextBox = new System.Windows.Forms.TextBox();
+            this.hueTextBox = new System.Windows.Forms.TextBox();
+            this.blauTextBox = new System.Windows.Forms.TextBox();
+            this.gruenTextBox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.rotTextBox = new System.Windows.Forms.TextBox();
+            this.histogramPictureBox = new System.Windows.Forms.PictureBox();
+            this.schließenToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panelPictureBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.filterPanel.SuspendLayout();
-            this.schrittePanel.SuspendLayout();
-            this.helligkeitPanel.SuspendLayout();
-            this.groesePanel.SuspendLayout();
-            this.bildPanel.SuspendLayout();
+            this.skalierenPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.anzeigenPanel.SuspendLayout();
+            this.histogrammPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.graukeilPictureBox)).BeginInit();
+            this.panel2.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.histogramPictureBox)).BeginInit();
             this.SuspendLayout();
-            // 
-            // loadPictureButton
-            // 
-            this.loadPictureButton.Location = new System.Drawing.Point(7, 32);
-            this.loadPictureButton.Name = "loadPictureButton";
-            this.loadPictureButton.Size = new System.Drawing.Size(84, 23);
-            this.loadPictureButton.TabIndex = 2;
-            this.loadPictureButton.Text = "öffnen";
-            this.loadPictureButton.UseVisualStyleBackColor = true;
-            this.loadPictureButton.Click += new System.EventHandler(this.loadPictureButton_Click);
             // 
             // bildÖffnenDialog
             // 
@@ -96,35 +114,38 @@ namespace picture_editor
             // panelPictureBox
             // 
             this.panelPictureBox.AutoScroll = true;
-            this.panelPictureBox.BackColor = System.Drawing.Color.LightGray;
+            this.panelPictureBox.BackColor = System.Drawing.Color.LightSlateGray;
             this.panelPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelPictureBox.Controls.Add(this.pictureBox1);
-            this.panelPictureBox.Location = new System.Drawing.Point(128, 12);
+            this.panelPictureBox.Location = new System.Drawing.Point(124, 40);
             this.panelPictureBox.Name = "panelPictureBox";
-            this.panelPictureBox.Size = new System.Drawing.Size(681, 519);
+            this.panelPictureBox.Size = new System.Drawing.Size(766, 534);
             this.panelPictureBox.TabIndex = 4;
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BackColor = System.Drawing.Color.LightSlateGray;
             this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(673, 510);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.Size = new System.Drawing.Size(758, 526);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             // 
             // filterPanel
             // 
+            this.filterPanel.BackColor = System.Drawing.Color.LightSteelBlue;
             this.filterPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.filterPanel.Controls.Add(this.invertierenButton);
             this.filterPanel.Controls.Add(this.sepiaFarbenButton);
             this.filterPanel.Controls.Add(this.pseudoColorButton);
             this.filterPanel.Controls.Add(this.filterLabel);
             this.filterPanel.Controls.Add(this.blackWhiteButton);
-            this.filterPanel.Location = new System.Drawing.Point(815, 108);
+            this.filterPanel.Enabled = false;
+            this.filterPanel.Location = new System.Drawing.Point(12, 373);
             this.filterPanel.Name = "filterPanel";
-            this.filterPanel.Size = new System.Drawing.Size(119, 146);
+            this.filterPanel.Size = new System.Drawing.Size(106, 146);
             this.filterPanel.TabIndex = 5;
             // 
             // invertierenButton
@@ -165,7 +186,7 @@ namespace picture_editor
             this.filterLabel.AutoSize = true;
             this.filterLabel.BackColor = System.Drawing.Color.Transparent;
             this.filterLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.filterLabel.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.filterLabel.ForeColor = System.Drawing.Color.Black;
             this.filterLabel.Location = new System.Drawing.Point(3, 7);
             this.filterLabel.Name = "filterLabel";
             this.filterLabel.Size = new System.Drawing.Size(44, 20);
@@ -183,136 +204,26 @@ namespace picture_editor
             this.blackWhiteButton.UseVisualStyleBackColor = true;
             this.blackWhiteButton.Click += new System.EventHandler(this.blackWhite_Click);
             // 
-            // schrittePanel
-            // 
-            this.schrittePanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.schrittePanel.Controls.Add(this.schrittZurueckButton);
-            this.schrittePanel.Controls.Add(this.schrittLabel);
-            this.schrittePanel.Controls.Add(this.schrittVorButton);
-            this.schrittePanel.Location = new System.Drawing.Point(815, 12);
-            this.schrittePanel.Name = "schrittePanel";
-            this.schrittePanel.Size = new System.Drawing.Size(119, 90);
-            this.schrittePanel.TabIndex = 1;
-            // 
-            // schrittZurueckButton
-            // 
-            this.schrittZurueckButton.AutoSize = true;
-            this.schrittZurueckButton.Location = new System.Drawing.Point(53, 42);
-            this.schrittZurueckButton.Name = "schrittZurueckButton";
-            this.schrittZurueckButton.Size = new System.Drawing.Size(55, 35);
-            this.schrittZurueckButton.TabIndex = 3;
-            this.schrittZurueckButton.Text = "zurueck";
-            this.schrittZurueckButton.UseVisualStyleBackColor = true;
-            this.schrittZurueckButton.Click += new System.EventHandler(this.schrittZurueckButton_Click);
-            // 
-            // schrittLabel
-            // 
-            this.schrittLabel.AutoSize = true;
-            this.schrittLabel.BackColor = System.Drawing.Color.Transparent;
-            this.schrittLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.schrittLabel.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.schrittLabel.Location = new System.Drawing.Point(3, 9);
-            this.schrittLabel.Name = "schrittLabel";
-            this.schrittLabel.Size = new System.Drawing.Size(64, 20);
-            this.schrittLabel.TabIndex = 2;
-            this.schrittLabel.Text = "Schritte";
-            // 
-            // schrittVorButton
-            // 
-            this.schrittVorButton.AutoSize = true;
-            this.schrittVorButton.Location = new System.Drawing.Point(3, 42);
-            this.schrittVorButton.Name = "schrittVorButton";
-            this.schrittVorButton.Size = new System.Drawing.Size(44, 35);
-            this.schrittVorButton.TabIndex = 0;
-            this.schrittVorButton.Text = "vor";
-            this.schrittVorButton.UseVisualStyleBackColor = true;
-            this.schrittVorButton.Click += new System.EventHandler(this.schrittVorButton_Click);
-            // 
-            // betrachtenButton
-            // 
-            this.betrachtenButton.Location = new System.Drawing.Point(7, 92);
-            this.betrachtenButton.Name = "betrachtenButton";
-            this.betrachtenButton.Size = new System.Drawing.Size(84, 23);
-            this.betrachtenButton.TabIndex = 6;
-            this.betrachtenButton.Text = "betrachten";
-            this.betrachtenButton.UseVisualStyleBackColor = true;
-            this.betrachtenButton.Visible = false;
-            this.betrachtenButton.Click += new System.EventHandler(this.viewerOpenButton_Click);
-            // 
-            // contrastButton
-            // 
-            this.contrastButton.AutoSize = true;
-            this.contrastButton.Location = new System.Drawing.Point(7, 61);
-            this.contrastButton.Name = "contrastButton";
-            this.contrastButton.Size = new System.Drawing.Size(90, 23);
-            this.contrastButton.TabIndex = 4;
-            this.contrastButton.Text = "Kontrast";
-            this.contrastButton.UseVisualStyleBackColor = true;
-            this.contrastButton.Click += new System.EventHandler(this.contrastButton_Click);
-            // 
-            // safeButton
-            // 
-            this.safeButton.Location = new System.Drawing.Point(7, 61);
-            this.safeButton.Name = "safeButton";
-            this.safeButton.Size = new System.Drawing.Size(84, 23);
-            this.safeButton.TabIndex = 8;
-            this.safeButton.Text = "speichern";
-            this.safeButton.UseVisualStyleBackColor = true;
-            this.safeButton.Visible = false;
-            this.safeButton.Click += new System.EventHandler(this.safeButton_Click);
-            // 
             // bildSpeichernDialog
             // 
             this.bildSpeichernDialog.Filter = "JPG|*.jpg|PNG|*.png";
             // 
-            // helligkeitPanel
+            // skalierenPanel
             // 
-            this.helligkeitPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.helligkeitPanel.Controls.Add(this.contrastButton);
-            this.helligkeitPanel.Controls.Add(this.helligkeitButton);
-            this.helligkeitPanel.Controls.Add(this.helligkeitLabel);
-            this.helligkeitPanel.Location = new System.Drawing.Point(815, 260);
-            this.helligkeitPanel.Name = "helligkeitPanel";
-            this.helligkeitPanel.Size = new System.Drawing.Size(119, 94);
-            this.helligkeitPanel.TabIndex = 9;
-            // 
-            // helligkeitButton
-            // 
-            this.helligkeitButton.AutoSize = true;
-            this.helligkeitButton.Location = new System.Drawing.Point(7, 32);
-            this.helligkeitButton.Name = "helligkeitButton";
-            this.helligkeitButton.Size = new System.Drawing.Size(90, 23);
-            this.helligkeitButton.TabIndex = 3;
-            this.helligkeitButton.Text = "Helligkeit";
-            this.helligkeitButton.UseVisualStyleBackColor = true;
-            this.helligkeitButton.Click += new System.EventHandler(this.helligkeitButton_Click);
-            // 
-            // helligkeitLabel
-            // 
-            this.helligkeitLabel.AutoSize = true;
-            this.helligkeitLabel.BackColor = System.Drawing.Color.Transparent;
-            this.helligkeitLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.helligkeitLabel.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.helligkeitLabel.Location = new System.Drawing.Point(3, 9);
-            this.helligkeitLabel.Name = "helligkeitLabel";
-            this.helligkeitLabel.Size = new System.Drawing.Size(105, 20);
-            this.helligkeitLabel.TabIndex = 2;
-            this.helligkeitLabel.Text = "Einstellungen";
-            // 
-            // groesePanel
-            // 
-            this.groesePanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.groesePanel.Controls.Add(this.label1);
-            this.groesePanel.Controls.Add(this.aktuelleGroeseLabel);
-            this.groesePanel.Controls.Add(this.viertelButton);
-            this.groesePanel.Controls.Add(this.vierfachButton);
-            this.groesePanel.Controls.Add(this.halbButton);
-            this.groesePanel.Controls.Add(this.groeseLabel);
-            this.groesePanel.Controls.Add(this.zweifachButton);
-            this.groesePanel.Location = new System.Drawing.Point(7, 266);
-            this.groesePanel.Name = "groesePanel";
-            this.groesePanel.Size = new System.Drawing.Size(105, 170);
-            this.groesePanel.TabIndex = 8;
+            this.skalierenPanel.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.skalierenPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.skalierenPanel.Controls.Add(this.label1);
+            this.skalierenPanel.Controls.Add(this.aktuelleGroeseLabel);
+            this.skalierenPanel.Controls.Add(this.viertelButton);
+            this.skalierenPanel.Controls.Add(this.vierfachButton);
+            this.skalierenPanel.Controls.Add(this.halbButton);
+            this.skalierenPanel.Controls.Add(this.groeseLabel);
+            this.skalierenPanel.Controls.Add(this.zweifachButton);
+            this.skalierenPanel.Enabled = false;
+            this.skalierenPanel.Location = new System.Drawing.Point(13, 197);
+            this.skalierenPanel.Name = "skalierenPanel";
+            this.skalierenPanel.Size = new System.Drawing.Size(105, 170);
+            this.skalierenPanel.TabIndex = 8;
             // 
             // label1
             // 
@@ -371,7 +282,7 @@ namespace picture_editor
             this.groeseLabel.AutoSize = true;
             this.groeseLabel.BackColor = System.Drawing.Color.Transparent;
             this.groeseLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groeseLabel.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.groeseLabel.ForeColor = System.Drawing.Color.Black;
             this.groeseLabel.Location = new System.Drawing.Point(3, 9);
             this.groeseLabel.Name = "groeseLabel";
             this.groeseLabel.Size = new System.Drawing.Size(75, 20);
@@ -389,66 +300,71 @@ namespace picture_editor
             this.zweifachButton.UseVisualStyleBackColor = true;
             this.zweifachButton.Click += new System.EventHandler(this.groeserButton_Click);
             // 
-            // bildPanel
-            // 
-            this.bildPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.bildPanel.Controls.Add(this.bildLabel);
-            this.bildPanel.Controls.Add(this.betrachtenButton);
-            this.bildPanel.Controls.Add(this.loadPictureButton);
-            this.bildPanel.Controls.Add(this.safeButton);
-            this.bildPanel.Location = new System.Drawing.Point(7, 12);
-            this.bildPanel.Name = "bildPanel";
-            this.bildPanel.Size = new System.Drawing.Size(110, 122);
-            this.bildPanel.TabIndex = 4;
-            // 
-            // bildLabel
-            // 
-            this.bildLabel.AutoSize = true;
-            this.bildLabel.BackColor = System.Drawing.Color.Transparent;
-            this.bildLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bildLabel.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.bildLabel.Location = new System.Drawing.Point(3, 9);
-            this.bildLabel.Name = "bildLabel";
-            this.bildLabel.Size = new System.Drawing.Size(35, 20);
-            this.bildLabel.TabIndex = 2;
-            this.bildLabel.Text = "Bild";
-            // 
             // pictureBox2
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(815, 360);
+            this.pictureBox2.BackColor = System.Drawing.Color.LightSlateGray;
+            this.pictureBox2.Location = new System.Drawing.Point(3, 3);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(115, 82);
+            this.pictureBox2.Size = new System.Drawing.Size(254, 86);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 11;
             this.pictureBox2.TabStop = false;
             // 
-            // panel1
+            // anzeigenPanel
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Controls.Add(this.centerButton);
-            this.panel1.Controls.Add(this.zoomButton);
-            this.panel1.Controls.Add(this.pictureBoxPanel);
-            this.panel1.Controls.Add(this.autosizeButton);
-            this.panel1.Location = new System.Drawing.Point(7, 140);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(105, 120);
-            this.panel1.TabIndex = 12;
+            this.anzeigenPanel.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.anzeigenPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.anzeigenPanel.Controls.Add(this.zoomOutButton);
+            this.anzeigenPanel.Controls.Add(this.zoomInButton);
+            this.anzeigenPanel.Controls.Add(this.centerButton);
+            this.anzeigenPanel.Controls.Add(this.zoomButton);
+            this.anzeigenPanel.Controls.Add(this.pictureBoxPanel);
+            this.anzeigenPanel.Controls.Add(this.autosizeButton);
+            this.anzeigenPanel.Enabled = false;
+            this.anzeigenPanel.Location = new System.Drawing.Point(13, 40);
+            this.anzeigenPanel.Name = "anzeigenPanel";
+            this.anzeigenPanel.Size = new System.Drawing.Size(105, 151);
+            this.anzeigenPanel.TabIndex = 12;
+            // 
+            // zoomOutButton
+            // 
+            this.zoomOutButton.AutoSize = true;
+            this.zoomOutButton.Location = new System.Drawing.Point(58, 117);
+            this.zoomOutButton.Name = "zoomOutButton";
+            this.zoomOutButton.Size = new System.Drawing.Size(38, 23);
+            this.zoomOutButton.TabIndex = 6;
+            this.zoomOutButton.Text = "-";
+            this.zoomOutButton.UseVisualStyleBackColor = true;
+            this.zoomOutButton.Visible = false;
+            this.zoomOutButton.Click += new System.EventHandler(this.zoomOutButton_Click);
+            // 
+            // zoomInButton
+            // 
+            this.zoomInButton.AutoSize = true;
+            this.zoomInButton.Location = new System.Drawing.Point(7, 117);
+            this.zoomInButton.Name = "zoomInButton";
+            this.zoomInButton.Size = new System.Drawing.Size(38, 23);
+            this.zoomInButton.TabIndex = 5;
+            this.zoomInButton.Text = "+";
+            this.zoomInButton.UseVisualStyleBackColor = true;
+            this.zoomInButton.Visible = false;
+            this.zoomInButton.Click += new System.EventHandler(this.zoomInButton_Click);
             // 
             // centerButton
             // 
             this.centerButton.AutoSize = true;
-            this.centerButton.Location = new System.Drawing.Point(7, 88);
+            this.centerButton.Location = new System.Drawing.Point(7, 59);
             this.centerButton.Name = "centerButton";
             this.centerButton.Size = new System.Drawing.Size(89, 23);
             this.centerButton.TabIndex = 4;
-            this.centerButton.Text = "Zoom";
+            this.centerButton.Text = "Zentriert";
             this.centerButton.UseVisualStyleBackColor = true;
             this.centerButton.Click += new System.EventHandler(this.centerButton_Click);
             // 
             // zoomButton
             // 
             this.zoomButton.AutoSize = true;
-            this.zoomButton.Location = new System.Drawing.Point(7, 59);
+            this.zoomButton.Location = new System.Drawing.Point(7, 88);
             this.zoomButton.Name = "zoomButton";
             this.zoomButton.Size = new System.Drawing.Size(89, 23);
             this.zoomButton.TabIndex = 3;
@@ -461,7 +377,7 @@ namespace picture_editor
             this.pictureBoxPanel.AutoSize = true;
             this.pictureBoxPanel.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pictureBoxPanel.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.pictureBoxPanel.ForeColor = System.Drawing.Color.Black;
             this.pictureBoxPanel.Location = new System.Drawing.Point(3, 7);
             this.pictureBoxPanel.Name = "pictureBoxPanel";
             this.pictureBoxPanel.Size = new System.Drawing.Size(76, 20);
@@ -479,37 +395,345 @@ namespace picture_editor
             this.autosizeButton.UseVisualStyleBackColor = true;
             this.autosizeButton.Click += new System.EventHandler(this.autosizeButton_Click);
             // 
+            // histogrammPanel
+            // 
+            this.histogrammPanel.BackColor = System.Drawing.Color.LightSlateGray;
+            this.histogrammPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.histogrammPanel.Controls.Add(this.histogramPictureBox);
+            this.histogrammPanel.Controls.Add(this.graukeilPictureBox);
+            this.histogrammPanel.Location = new System.Drawing.Point(896, 411);
+            this.histogrammPanel.Name = "histogrammPanel";
+            this.histogrammPanel.Size = new System.Drawing.Size(267, 163);
+            this.histogrammPanel.TabIndex = 13;
+            // 
+            // graukeilPictureBox
+            // 
+            this.graukeilPictureBox.BackColor = System.Drawing.Color.White;
+            this.graukeilPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.graukeilPictureBox.Location = new System.Drawing.Point(3, 141);
+            this.graukeilPictureBox.Name = "graukeilPictureBox";
+            this.graukeilPictureBox.Size = new System.Drawing.Size(255, 15);
+            this.graukeilPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.graukeilPictureBox.TabIndex = 0;
+            this.graukeilPictureBox.TabStop = false;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(3, 3);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(96, 40);
+            this.progressBar1.Step = 1;
+            this.progressBar1.TabIndex = 14;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Transparent;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.menuStrip1);
+            this.panel2.Location = new System.Drawing.Point(12, 8);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1151, 26);
+            this.panel2.TabIndex = 1;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dateiToolStripMenuItem,
+            this.schrittToolStripMenuItem,
+            this.bearbeitenToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1149, 24);
+            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // dateiToolStripMenuItem
+            // 
+            this.dateiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.öffnenToolStripMenuItem,
+            this.speichernToolStripMenuItem,
+            this.schließenToolStripMenuItem1,
+            this.schließenToolStripMenuItem});
+            this.dateiToolStripMenuItem.Name = "dateiToolStripMenuItem";
+            this.dateiToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.dateiToolStripMenuItem.Text = "Datei";
+            // 
+            // öffnenToolStripMenuItem
+            // 
+            this.öffnenToolStripMenuItem.Name = "öffnenToolStripMenuItem";
+            this.öffnenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.öffnenToolStripMenuItem.Text = "Öffnen";
+            this.öffnenToolStripMenuItem.Click += new System.EventHandler(this.öffnenToolStripMenuItem_Click_1);
+            // 
+            // speichernToolStripMenuItem
+            // 
+            this.speichernToolStripMenuItem.Name = "speichernToolStripMenuItem";
+            this.speichernToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.speichernToolStripMenuItem.Text = "Speichern";
+            this.speichernToolStripMenuItem.Click += new System.EventHandler(this.speichernToolStripMenuItem_Click_1);
+            // 
+            // schließenToolStripMenuItem
+            // 
+            this.schließenToolStripMenuItem.Name = "schließenToolStripMenuItem";
+            this.schließenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.schließenToolStripMenuItem.Text = "Beenden";
+            this.schließenToolStripMenuItem.Click += new System.EventHandler(this.schließenToolStripMenuItem_Click);
+            // 
+            // schrittToolStripMenuItem
+            // 
+            this.schrittToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rückgängigToolStripMenuItem,
+            this.wiederholenToolStripMenuItem});
+            this.schrittToolStripMenuItem.Name = "schrittToolStripMenuItem";
+            this.schrittToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.schrittToolStripMenuItem.Text = "Schritt";
+            // 
+            // rückgängigToolStripMenuItem
+            // 
+            this.rückgängigToolStripMenuItem.Name = "rückgängigToolStripMenuItem";
+            this.rückgängigToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rückgängigToolStripMenuItem.Text = "Rückgängig";
+            this.rückgängigToolStripMenuItem.Click += new System.EventHandler(this.rückgängigToolStripMenuItem_Click);
+            // 
+            // wiederholenToolStripMenuItem
+            // 
+            this.wiederholenToolStripMenuItem.Name = "wiederholenToolStripMenuItem";
+            this.wiederholenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.wiederholenToolStripMenuItem.Text = "Wiederholen";
+            this.wiederholenToolStripMenuItem.Click += new System.EventHandler(this.wiederholenToolStripMenuItem_Click);
+            // 
+            // bearbeitenToolStripMenuItem
+            // 
+            this.bearbeitenToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.helligkeitToolStripMenuItem,
+            this.kontrastToolStripMenuItem});
+            this.bearbeitenToolStripMenuItem.Name = "bearbeitenToolStripMenuItem";
+            this.bearbeitenToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
+            this.bearbeitenToolStripMenuItem.Text = "Bearbeiten";
+            // 
+            // helligkeitToolStripMenuItem
+            // 
+            this.helligkeitToolStripMenuItem.Name = "helligkeitToolStripMenuItem";
+            this.helligkeitToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.helligkeitToolStripMenuItem.Text = "Helligkeit";
+            this.helligkeitToolStripMenuItem.Click += new System.EventHandler(this.helligkeitToolStripMenuItem_Click);
+            // 
+            // kontrastToolStripMenuItem
+            // 
+            this.kontrastToolStripMenuItem.Name = "kontrastToolStripMenuItem";
+            this.kontrastToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.kontrastToolStripMenuItem.Text = "Kontrast";
+            this.kontrastToolStripMenuItem.Click += new System.EventHandler(this.kontrastToolStripMenuItem_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.LightSlateGray;
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel3.Controls.Add(this.pictureBox3);
+            this.panel3.Location = new System.Drawing.Point(896, 40);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(267, 182);
+            this.panel3.TabIndex = 15;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.LightSlateGray;
+            this.pictureBox3.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(257, 172);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 0;
+            this.pictureBox3.TabStop = false;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel4.Controls.Add(this.progressBar1);
+            this.panel4.Location = new System.Drawing.Point(12, 525);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(106, 49);
+            this.panel4.TabIndex = 1;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.LightSlateGray;
+            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel5.Controls.Add(this.label7);
+            this.panel5.Controls.Add(this.label6);
+            this.panel5.Controls.Add(this.label5);
+            this.panel5.Controls.Add(this.label4);
+            this.panel5.Controls.Add(this.brightnessTextBox);
+            this.panel5.Controls.Add(this.saturationTextBox);
+            this.panel5.Controls.Add(this.hueTextBox);
+            this.panel5.Controls.Add(this.blauTextBox);
+            this.panel5.Controls.Add(this.gruenTextBox);
+            this.panel5.Controls.Add(this.label3);
+            this.panel5.Controls.Add(this.label2);
+            this.panel5.Controls.Add(this.rotTextBox);
+            this.panel5.Controls.Add(this.pictureBox2);
+            this.panel5.Location = new System.Drawing.Point(896, 231);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(267, 174);
+            this.panel5.TabIndex = 1;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(90, 150);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(56, 13);
+            this.label7.TabIndex = 23;
+            this.label7.Text = "Brightness";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(90, 124);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(55, 13);
+            this.label6.TabIndex = 22;
+            this.label6.Text = "Saturation";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(90, 98);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(27, 13);
+            this.label5.TabIndex = 21;
+            this.label5.Text = "Hue";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(168, 150);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(28, 13);
+            this.label4.TabIndex = 20;
+            this.label4.Text = "Blau";
+            // 
+            // brightnessTextBox
+            // 
+            this.brightnessTextBox.Location = new System.Drawing.Point(3, 147);
+            this.brightnessTextBox.Name = "brightnessTextBox";
+            this.brightnessTextBox.Size = new System.Drawing.Size(81, 20);
+            this.brightnessTextBox.TabIndex = 19;
+            // 
+            // saturationTextBox
+            // 
+            this.saturationTextBox.Location = new System.Drawing.Point(3, 121);
+            this.saturationTextBox.Name = "saturationTextBox";
+            this.saturationTextBox.Size = new System.Drawing.Size(81, 20);
+            this.saturationTextBox.TabIndex = 18;
+            // 
+            // hueTextBox
+            // 
+            this.hueTextBox.Location = new System.Drawing.Point(3, 95);
+            this.hueTextBox.Name = "hueTextBox";
+            this.hueTextBox.Size = new System.Drawing.Size(81, 20);
+            this.hueTextBox.TabIndex = 17;
+            // 
+            // blauTextBox
+            // 
+            this.blauTextBox.Location = new System.Drawing.Point(209, 147);
+            this.blauTextBox.Name = "blauTextBox";
+            this.blauTextBox.Size = new System.Drawing.Size(48, 20);
+            this.blauTextBox.TabIndex = 16;
+            // 
+            // gruenTextBox
+            // 
+            this.gruenTextBox.Location = new System.Drawing.Point(209, 121);
+            this.gruenTextBox.Name = "gruenTextBox";
+            this.gruenTextBox.Size = new System.Drawing.Size(48, 20);
+            this.gruenTextBox.TabIndex = 15;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(168, 124);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(30, 13);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Grün";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(166, 98);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(24, 13);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Rot";
+            // 
+            // rotTextBox
+            // 
+            this.rotTextBox.Location = new System.Drawing.Point(209, 95);
+            this.rotTextBox.Name = "rotTextBox";
+            this.rotTextBox.Size = new System.Drawing.Size(49, 20);
+            this.rotTextBox.TabIndex = 12;
+            // 
+            // histogramPictureBox
+            // 
+            this.histogramPictureBox.Location = new System.Drawing.Point(3, 3);
+            this.histogramPictureBox.Name = "histogramPictureBox";
+            this.histogramPictureBox.Size = new System.Drawing.Size(255, 132);
+            this.histogramPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.histogramPictureBox.TabIndex = 1;
+            this.histogramPictureBox.TabStop = false;
+            // 
+            // schließenToolStripMenuItem1
+            // 
+            this.schließenToolStripMenuItem1.Name = "schließenToolStripMenuItem1";
+            this.schließenToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.schließenToolStripMenuItem1.Text = "Schließen";
+            this.schließenToolStripMenuItem1.Click += new System.EventHandler(this.schließenToolStripMenuItem1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(944, 539);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.bildPanel);
-            this.Controls.Add(this.groesePanel);
-            this.Controls.Add(this.helligkeitPanel);
-            this.Controls.Add(this.schrittePanel);
-            this.Controls.Add(this.filterPanel);
+            this.BackColor = System.Drawing.Color.Gainsboro;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ClientSize = new System.Drawing.Size(1169, 582);
+            this.ControlBox = false;
+            this.Controls.Add(this.panel5);
+            this.Controls.Add(this.panel4);
             this.Controls.Add(this.panelPictureBox);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.histogrammPanel);
+            this.Controls.Add(this.anzeigenPanel);
+            this.Controls.Add(this.skalierenPanel);
+            this.Controls.Add(this.filterPanel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Photoshop für Arme";
+            this.TransparencyKey = System.Drawing.Color.Crimson;
             this.panelPictureBox.ResumeLayout(false);
-            this.panelPictureBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.filterPanel.ResumeLayout(false);
             this.filterPanel.PerformLayout();
-            this.schrittePanel.ResumeLayout(false);
-            this.schrittePanel.PerformLayout();
-            this.helligkeitPanel.ResumeLayout(false);
-            this.helligkeitPanel.PerformLayout();
-            this.groesePanel.ResumeLayout(false);
-            this.groesePanel.PerformLayout();
-            this.bildPanel.ResumeLayout(false);
-            this.bildPanel.PerformLayout();
+            this.skalierenPanel.ResumeLayout(false);
+            this.skalierenPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.anzeigenPanel.ResumeLayout(false);
+            this.anzeigenPanel.PerformLayout();
+            this.histogrammPanel.ResumeLayout(false);
+            this.histogrammPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.graukeilPictureBox)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.histogramPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -517,43 +741,65 @@ namespace picture_editor
         #endregion
 
         private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.Button loadPictureButton;
         private System.Windows.Forms.OpenFileDialog bildÖffnenDialog;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel filterPanel;
         private System.Windows.Forms.Button blackWhiteButton;
         private System.Windows.Forms.Label filterLabel;
-        private System.Windows.Forms.Panel schrittePanel;
-        private System.Windows.Forms.Button schrittZurueckButton;
-        private System.Windows.Forms.Label schrittLabel;
-        private System.Windows.Forms.Button schrittVorButton;
         private System.Windows.Forms.Button pseudoColorButton;
         private System.Windows.Forms.Button sepiaFarbenButton;
-        private System.Windows.Forms.Button betrachtenButton;
-        private System.Windows.Forms.Button safeButton;
         private System.Windows.Forms.SaveFileDialog bildSpeichernDialog;
-        private System.Windows.Forms.Panel helligkeitPanel;
-        private System.Windows.Forms.Label helligkeitLabel;
-        private System.Windows.Forms.Panel groesePanel;
+        private System.Windows.Forms.Panel skalierenPanel;
         private System.Windows.Forms.Button halbButton;
         private System.Windows.Forms.Label groeseLabel;
         private System.Windows.Forms.Button zweifachButton;
-        private System.Windows.Forms.Panel bildPanel;
-        private System.Windows.Forms.Label bildLabel;
         public System.Windows.Forms.Panel panelPictureBox;
-        private System.Windows.Forms.Button helligkeitButton;
-        private System.Windows.Forms.Button contrastButton;
         private System.Windows.Forms.Button vierfachButton;
         private System.Windows.Forms.Button viertelButton;
         private System.Windows.Forms.Label aktuelleGroeseLabel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button invertierenButton;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel anzeigenPanel;
         private System.Windows.Forms.Button centerButton;
         private System.Windows.Forms.Button zoomButton;
         private System.Windows.Forms.Label pictureBoxPanel;
         private System.Windows.Forms.Button autosizeButton;
+        private System.Windows.Forms.Button zoomOutButton;
+        private System.Windows.Forms.Button zoomInButton;
+        private System.Windows.Forms.Panel histogrammPanel;
+        private System.Windows.Forms.PictureBox graukeilPictureBox;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem dateiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem öffnenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem speichernToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem schließenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem schrittToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rückgängigToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem wiederholenToolStripMenuItem;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.ToolStripMenuItem bearbeitenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helligkeitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem kontrastToolStripMenuItem;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox brightnessTextBox;
+        private System.Windows.Forms.TextBox saturationTextBox;
+        private System.Windows.Forms.TextBox hueTextBox;
+        private System.Windows.Forms.TextBox blauTextBox;
+        private System.Windows.Forms.TextBox gruenTextBox;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox rotTextBox;
+        private System.Windows.Forms.PictureBox histogramPictureBox;
+        private System.Windows.Forms.ToolStripMenuItem schließenToolStripMenuItem1;
     }
 }
 
