@@ -19,7 +19,6 @@ namespace picture_editor
         public Form1()
         {
             InitializeComponent();
-            zeichneGraukeil();
         }
 
         //----------------------------------------------------------------------------------------------------------------------
@@ -185,8 +184,7 @@ namespace picture_editor
                     greyBitmap.SetPixel(x, y, neueFarbe);
                 }
             }
-            int hoehe = max;
-            Bitmap histogramm = new Bitmap(255, 132);
+            Bitmap histogramm = new Bitmap(257, 132);
             histogramPictureBox.BackColor = Color.White;
             double ratio = 132.0 / (double)max;
 
@@ -195,9 +193,10 @@ namespace picture_editor
                 int y = (int)((double)hist[255 - x] * ratio);
                 for (int b = 0; b < y; b++)
                 {
-                    histogramm.SetPixel(x, 131 - b, Color.Black);
+                    histogramm.SetPixel(x+1, 131 - b, Color.Black);
                 }
             }
+            zeichneGraukeil();
             histogramPictureBox.Image = histogramm;
             pictureBox1.Image = greyBitmap;
             speicherZwischen((Bitmap)pictureBox1.Image);    //Schritt speichern
@@ -208,6 +207,286 @@ namespace picture_editor
             {
                 change_to_greymap();
             }
+        }
+
+        //Histogramme
+        private void histGray()
+        {
+            Bitmap origBitmap = (Bitmap)pictureBox1.Image;
+
+            int[] hist = new int[256];
+            int max = 0;
+
+            for (int a = 0; a < 255; a++)
+            {
+                hist[a] = 0;
+            }
+
+            progressBar1.Maximum = origBitmap.Width;
+            progressBar1.Value = 0;
+            //läuft jedes Pixel einzeln durch
+            for (int x = 0; x < origBitmap.Width; x++)
+            {
+                progressBar1.Increment(1);
+                for (int y = 0; y < origBitmap.Height; y++)
+                {
+                    Color orig = origBitmap.GetPixel(x, y);
+                    //Diese Werte sind aus der Vorlesung
+                    int grey = (int)((orig.R * 0.3) + (orig.G * 0.6) + (orig.B * 0.1));
+
+                    int grauWert = grey;
+                    hist[grauWert]++;
+                    if (hist[grauWert] > max)
+                    {
+                        max = hist[grauWert];
+                    }
+                }
+            }
+            Bitmap histogramm = new Bitmap(257, 132);
+            histogramPictureBox.BackColor = Color.White;
+            double ratio = 132.0 / (double)max;
+
+            for (int x = 0; x < 255; x++)
+            {
+                int y = (int)((double)hist[255 - x] * ratio);
+                for (int b = 0; b < y; b++)
+                {
+                    histogramm.SetPixel(x+1, 131 - b, Color.Black);
+                }
+            }
+            histogramPictureBox.Image = histogramm;
+        }
+        private void histRed()
+        {
+            Bitmap orig = (Bitmap)pictureBox1.Image;
+            int[] rot = new int[256];
+            int max = 0;
+            for (int a = 0; a < 255; a++)
+            {
+                rot[a] = 0;
+            }
+            progressBar1.Maximum = orig.Width;
+            progressBar1.Value = 0;
+            for (int x = 0; x < orig.Width; x++)
+            {
+                progressBar1.Increment(1);
+                for (int y = 0; y < orig.Height; y++)
+                {
+                    int rotwert = orig.GetPixel(x, y).R;
+                    rot[rotwert]++;
+                    if (rot[rotwert] > max)
+                        max = rot[rotwert];
+                }
+            }
+            Bitmap histogramm = new Bitmap(257, 132);
+            histogramPictureBox.BackColor = Color.White;
+            double ratio = 132.0 / (double)max;
+
+            for (int x = 0; x < 255; x++)
+            {
+                int y = (int)((double)rot[255 - x] * ratio);
+                for (int b = 0; b < y; b++)
+                {
+                    histogramm.SetPixel(x + 1, 131 - b, Color.Red);
+                }
+            }
+            histogramPictureBox.Image = histogramm;
+        }
+        private void histGreen()
+        {
+            Bitmap orig = (Bitmap)pictureBox1.Image;
+            int[] green = new int[256];
+            int max = 0;
+            for (int a = 0; a < 255; a++)
+            {
+                green[a] = 0;
+            }
+            progressBar1.Maximum = orig.Width;
+            progressBar1.Value = 0;
+            for (int x = 0; x < orig.Width; x++)
+            {
+                progressBar1.Increment(1);
+                for (int y = 0; y < orig.Height; y++)
+                {
+                    int gruenwert = orig.GetPixel(x, y).G;
+                    green[gruenwert]++;
+                    if (green[gruenwert] > max)
+                        max = green[gruenwert];
+                }
+            }
+            Bitmap histogramm = new Bitmap(257, 132);
+            histogramPictureBox.BackColor = Color.White;
+            double ratio = 132.0 / (double)max;
+
+            for (int x = 0; x < 255; x++)
+            {
+                int y = (int)((double)green[255 - x] * ratio);
+                for (int b = 0; b < y; b++)
+                {
+                    histogramm.SetPixel(x + 1, 131 - b, Color.Green);
+                }
+            }
+            histogramPictureBox.Image = histogramm;
+        }
+        private void histBlue()
+        {
+            Bitmap orig = (Bitmap)pictureBox1.Image;
+            int[] blue = new int[256];
+            int max = 0;
+            for (int a = 0; a < 255; a++)
+            {
+                blue[a] = 0;
+            }
+            progressBar1.Maximum = orig.Width;
+            progressBar1.Value = 0;
+            for (int x = 0; x < orig.Width; x++)
+            {
+                progressBar1.Increment(1);
+                for (int y = 0; y < orig.Height; y++)
+                {
+                    int blauwert = orig.GetPixel(x, y).B;
+                    blue[blauwert]++;
+                    if (blue[blauwert] > max)
+                        max = blue[blauwert];
+                }
+            }
+            Bitmap histogramm = new Bitmap(257, 132);
+            histogramPictureBox.BackColor = Color.White;
+            double ratio = 132.0 / (double)max;
+
+            for (int x = 0; x < 255; x++)
+            {
+                int y = (int)((double)blue[255 - x] * ratio);
+                for (int b = 0; b < y; b++)
+                {
+                    histogramm.SetPixel(x + 1, 131 - b, Color.Blue);
+                }
+            }
+            histogramPictureBox.Image = histogramm;
+        }
+        private void histRGB()
+        {
+            Bitmap orig = (Bitmap)pictureBox1.Image;
+
+            //blau
+            int[] blue = new int[256];
+            int maxBlau = 0;
+            for (int a = 0; a < 255; a++)
+            {
+                blue[a] = 0;
+            }
+
+            //rot
+            int[] red = new int[256];
+            int maxRot = 0;
+            for (int a = 0; a < 255; a++)
+            {
+                red[a] = 0;
+            }
+
+            //Grün
+            int[] greene = new int[256];
+            int maxGruen = 0;
+            for (int a = 0; a < 255; a++)
+            {
+                greene[a] = 0;
+            }
+
+            progressBar1.Maximum = orig.Width;
+            progressBar1.Value = 0;
+
+            for (int x = 0; x < orig.Width; x++)
+            {
+                progressBar1.Increment(1);
+                for (int y = 0; y < orig.Height; y++)
+                {
+                    int rotwert = orig.GetPixel(x, y).R;
+                    int gruenwert = orig.GetPixel(x, y).G;
+                    int blauwert = orig.GetPixel(x, y).B;
+
+                    //rot
+                    red[rotwert]++;
+                    if (red[rotwert] > maxRot)
+                        maxRot = red[rotwert];
+
+                    //grün
+                    greene[gruenwert]++;
+                    if (greene[gruenwert] > maxGruen)
+                        maxGruen = greene[gruenwert];
+
+                    //blau
+                    blue[blauwert]++;
+                    if (blue[blauwert] > maxBlau)
+                        maxBlau = blue[blauwert];
+                }
+            }
+            Bitmap histogramm = new Bitmap(257, 132);
+            histogramPictureBox.BackColor = Color.White;
+
+            int groesste = 0;
+
+            if (maxBlau > maxGruen && maxBlau > maxRot)
+            {
+                groesste = maxBlau;
+            }
+            else if (maxGruen > maxBlau && maxGruen > maxRot)
+            {
+                groesste = maxGruen;
+            }
+            else
+                groesste = maxRot;
+
+            double ratio = 132.0 / (double)groesste;
+
+            //rot
+            for (int x = 0; x < 255; x++)
+            {
+                int y = (int)((double)red[255 - x] * ratio);
+                for (int b = 0; b < y; b++)
+                {
+                    histogramm.SetPixel(x + 1, 131 - b, Color.Red);
+                }
+            }
+
+            //grün
+            for (int x = 0; x < 255; x++)
+            {
+                int y = (int)((double)greene[255 - x] * ratio);
+                for (int b = 0; b < y; b++)
+                {
+                    if (histogramm.GetPixel(x + 1, 131 - b).R != 0)
+                    {
+                        histogramm.SetPixel(x + 1, 131 - b, Color.Yellow);
+                    }
+                    else
+                        histogramm.SetPixel(x + 1, 131 - b, Color.Green);
+                }
+            }
+
+            //blau
+            for (int x = 0; x < 255; x++)
+            {
+                int y = (int)((double)blue[255 - x] * ratio);
+                for (int b = 0; b < y; b++)
+                {
+                    Color grab=histogramm.GetPixel(x + 1, 131 - b);
+                    if (grab.R != 0 && grab.G != 0)
+                    {
+                        histogramm.SetPixel(x + 1, 131 - b, Color.Gray);
+                    }
+                    else if (grab.R != 0)
+                    {
+                        histogramm.SetPixel(x + 1, 131 - b, Color.Magenta);
+                    }
+                    else if (grab.G != 0)
+                    {
+                        histogramm.SetPixel(x + 1, 131 - b, Color.LightBlue);
+                    }
+                    else
+                        histogramm.SetPixel(x + 1, 131 - b, Color.Blue);
+                }
+            }
+            histogramPictureBox.Image = histogramm;
         }
 
         //Pseudo Farben
@@ -462,7 +741,84 @@ namespace picture_editor
             }
             graukeilPictureBox.Image = graukeil;
         }
-                
+        private void zeichneRotkeil()
+        {
+            Bitmap rotkeil = new Bitmap(255, 15);
+            for (int x = 0; x < 255; x++)
+            {
+                for (int y = 0; y < 15; y++)
+                {
+                    Color neu = Color.FromArgb(x,0,0);
+                    rotkeil.SetPixel(x, y, neu);
+                }
+            }
+            graukeilPictureBox.Image = rotkeil;
+        }
+        private void zeichneGruenkeil()
+        {
+            Bitmap greenkeil = new Bitmap(255, 15);
+            for (int x = 0; x < 255; x++)
+            {
+                for (int y = 0; y < 15; y++)
+                {
+                    Color neu = Color.FromArgb(0, x, 0);
+                    greenkeil.SetPixel(x, y, neu);
+                }
+            }
+            graukeilPictureBox.Image = greenkeil;
+        }
+        private void zeichneBlaukeil()
+        {
+            Bitmap blaukeil = new Bitmap(255, 15);
+            for (int x = 0; x < 255; x++)
+            {
+                for (int y = 0; y < 15; y++)
+                {
+                    Color neu = Color.FromArgb(0, 0, x);
+                    blaukeil.SetPixel(x, y, neu);
+                }
+            }
+            graukeilPictureBox.Image = blaukeil;
+        }
+        private void zeichneFarbkeil()
+        {
+            Bitmap farbkeil = new Bitmap(1024, 15);
+            int x=0;
+            for (x=0; x <= 255; x++)
+            {
+                for (int y = 0; y < 15; y++)
+                {
+                    Color neu=Color.FromArgb(255,x,0);
+                    farbkeil.SetPixel(x, y, neu);
+                }
+            }
+            for (x=0; x <= 255; x++)
+            {
+                for (int y = 0; y < 15; y++)
+                {
+                    Color neu = Color.FromArgb(255-x, 255, 0);
+                    farbkeil.SetPixel(x+255, y, neu);
+                }
+            }
+            for (x=0; x <= 255; x++)
+            {
+                for (int y = 0; y < 15; y++)
+                {
+                    Color neu = Color.FromArgb(0, 255, x);
+                    farbkeil.SetPixel(x+512, y, neu);
+                }
+            }
+            for (x=0; x <= 255; x++)
+            {
+                for (int y = 0; y < 15; y++)
+                {
+                    Color neu = Color.FromArgb(0, 255 - x, 255);
+                    farbkeil.SetPixel(x+768, y, neu);
+                }
+            }
+            graukeilPictureBox.Image = farbkeil;
+        }
+
         //Menü Bar "Datei"
         private void öffnenToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
@@ -478,6 +834,11 @@ namespace picture_editor
                 geladenesBild = (Bitmap)pictureBox1.Image;
                 speicherZwischen((Bitmap)Image.FromFile(bildÖffnenDialog.FileName));
                 skalierungAnzeigen();
+                if (histogramPictureBox.Image != null)
+                {
+                    histogramPictureBox.Image = null;
+                    graukeilPictureBox.Image = null;
+                }
             }
         }
         private void speichernToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -493,6 +854,26 @@ namespace picture_editor
         private void schließenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        private void schließenToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Bitmap leer = new Bitmap(1, 1);
+            leer.SetPixel(0, 0, Color.LightSlateGray);
+            pictureBox1.Image = leer;
+            pictureBox1.Enabled = false;
+            pictureBox2.BackColor = Color.LightSlateGray;
+            pictureBox3.Image = leer;
+            histogramPictureBox.Image = leer;
+            rotTextBox.Text = "";
+            gruenTextBox.Text = "";
+            blauTextBox.Text = "";
+            hueTextBox.Text = "";
+            saturationTextBox.Text = "";
+            brightnessTextBox.Text = "";
+            filterPanel.Enabled = false;
+            skalierenPanel.Enabled = false;
+            anzeigenPanel.Enabled = false;
+            progressBar1.Value = 0;
         }
         
         //Menü Bar "Schritt"
@@ -550,36 +931,54 @@ namespace picture_editor
         {
             if (bildVorhanden())
             {
-                contrastbearbeiten = new contrast(geladenesBild, this);
+                contrastbearbeiten = new contrast((Bitmap)pictureBox1.Image , this);
                 contrastbearbeiten.Show();
             }
         }
         private void set_brightness()
         {
-            hellBearbeiten = new formhelligkeit(geladenesBild, this);
+            hellBearbeiten = new formhelligkeit((Bitmap)pictureBox1.Image, this);
             hellBearbeiten.Show();
         }
 
-        private void schließenToolStripMenuItem1_Click(object sender, EventArgs e)
+        //Menü Bar "Histogramme"
+        private void grayscaleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bitmap leer = new Bitmap(1, 1);
-            leer.SetPixel(0, 0, Color.LightSlateGray);
-            pictureBox1.Image = leer;
-            pictureBox1.Enabled = false;
-            pictureBox2.BackColor = Color.LightSlateGray;
-            pictureBox3.Image = leer;
-            histogramPictureBox.Image = leer;
-            rotTextBox.Text="";
-            gruenTextBox.Text="";
-            blauTextBox.Text="";
-            hueTextBox.Text="";
-            saturationTextBox.Text="";
-            brightnessTextBox.Text="";
-            filterPanel.Enabled = false;
-            skalierenPanel.Enabled = false;
-            anzeigenPanel.Enabled = false;
-            progressBar1.Value = 0;
+            if (bildVorhanden())
+            {
+                histGray();
+                zeichneGraukeil();
+            }
+        }    //grauwert histogramm
+        private void rGBToolStripMenuItem_Click(object sender, EventArgs e)            //rot histogramm
+        {
+            histRed();
+            zeichneRotkeil();
         }
+        private void grünToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (bildVorhanden())
+            {
+                histGreen();
+                zeichneGruenkeil();
+            }
+        }       //grün histogramm
+        private void blauToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (bildVorhanden())
+            {
+                histBlue();
+                zeichneBlaukeil();
+            }
+        }      //blau histogramm
+        private void rGBToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (bildVorhanden())
+            {
+                zeichneFarbkeil();
+                histRGB();
+            }
+        }     //rgb histogramm
         
 
     }

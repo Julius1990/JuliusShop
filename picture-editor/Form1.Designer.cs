@@ -57,6 +57,7 @@ namespace picture_editor
             this.pictureBoxPanel = new System.Windows.Forms.Label();
             this.autosizeButton = new System.Windows.Forms.Button();
             this.histogrammPanel = new System.Windows.Forms.Panel();
+            this.histogramPictureBox = new System.Windows.Forms.PictureBox();
             this.graukeilPictureBox = new System.Windows.Forms.PictureBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -64,6 +65,7 @@ namespace picture_editor
             this.dateiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.öffnenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.speichernToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.schließenToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.schließenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.schrittToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rückgängigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -87,8 +89,12 @@ namespace picture_editor
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.rotTextBox = new System.Windows.Forms.TextBox();
-            this.histogramPictureBox = new System.Windows.Forms.PictureBox();
-            this.schließenToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.histogrammToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.grayscaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rGBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.grünToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.blauToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rGBToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panelPictureBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.filterPanel.SuspendLayout();
@@ -96,6 +102,7 @@ namespace picture_editor
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.anzeigenPanel.SuspendLayout();
             this.histogrammPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.histogramPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.graukeilPictureBox)).BeginInit();
             this.panel2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -103,7 +110,6 @@ namespace picture_editor
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.histogramPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // bildÖffnenDialog
@@ -406,14 +412,23 @@ namespace picture_editor
             this.histogrammPanel.Size = new System.Drawing.Size(267, 163);
             this.histogrammPanel.TabIndex = 13;
             // 
+            // histogramPictureBox
+            // 
+            this.histogramPictureBox.Location = new System.Drawing.Point(3, 3);
+            this.histogramPictureBox.Name = "histogramPictureBox";
+            this.histogramPictureBox.Size = new System.Drawing.Size(255, 132);
+            this.histogramPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.histogramPictureBox.TabIndex = 1;
+            this.histogramPictureBox.TabStop = false;
+            // 
             // graukeilPictureBox
             // 
             this.graukeilPictureBox.BackColor = System.Drawing.Color.White;
             this.graukeilPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.graukeilPictureBox.Location = new System.Drawing.Point(3, 141);
+            this.graukeilPictureBox.Location = new System.Drawing.Point(2, 137);
             this.graukeilPictureBox.Name = "graukeilPictureBox";
-            this.graukeilPictureBox.Size = new System.Drawing.Size(255, 15);
-            this.graukeilPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.graukeilPictureBox.Size = new System.Drawing.Size(257, 15);
+            this.graukeilPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.graukeilPictureBox.TabIndex = 0;
             this.graukeilPictureBox.TabStop = false;
             // 
@@ -441,7 +456,8 @@ namespace picture_editor
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dateiToolStripMenuItem,
             this.schrittToolStripMenuItem,
-            this.bearbeitenToolStripMenuItem});
+            this.bearbeitenToolStripMenuItem,
+            this.histogrammToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1149, 24);
@@ -462,21 +478,28 @@ namespace picture_editor
             // öffnenToolStripMenuItem
             // 
             this.öffnenToolStripMenuItem.Name = "öffnenToolStripMenuItem";
-            this.öffnenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.öffnenToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.öffnenToolStripMenuItem.Text = "Öffnen";
             this.öffnenToolStripMenuItem.Click += new System.EventHandler(this.öffnenToolStripMenuItem_Click_1);
             // 
             // speichernToolStripMenuItem
             // 
             this.speichernToolStripMenuItem.Name = "speichernToolStripMenuItem";
-            this.speichernToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.speichernToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.speichernToolStripMenuItem.Text = "Speichern";
             this.speichernToolStripMenuItem.Click += new System.EventHandler(this.speichernToolStripMenuItem_Click_1);
+            // 
+            // schließenToolStripMenuItem1
+            // 
+            this.schließenToolStripMenuItem1.Name = "schließenToolStripMenuItem1";
+            this.schließenToolStripMenuItem1.Size = new System.Drawing.Size(126, 22);
+            this.schließenToolStripMenuItem1.Text = "Schließen";
+            this.schließenToolStripMenuItem1.Click += new System.EventHandler(this.schließenToolStripMenuItem1_Click);
             // 
             // schließenToolStripMenuItem
             // 
             this.schließenToolStripMenuItem.Name = "schließenToolStripMenuItem";
-            this.schließenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.schließenToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.schließenToolStripMenuItem.Text = "Beenden";
             this.schließenToolStripMenuItem.Click += new System.EventHandler(this.schließenToolStripMenuItem_Click);
             // 
@@ -492,14 +515,14 @@ namespace picture_editor
             // rückgängigToolStripMenuItem
             // 
             this.rückgängigToolStripMenuItem.Name = "rückgängigToolStripMenuItem";
-            this.rückgängigToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rückgängigToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.rückgängigToolStripMenuItem.Text = "Rückgängig";
             this.rückgängigToolStripMenuItem.Click += new System.EventHandler(this.rückgängigToolStripMenuItem_Click);
             // 
             // wiederholenToolStripMenuItem
             // 
             this.wiederholenToolStripMenuItem.Name = "wiederholenToolStripMenuItem";
-            this.wiederholenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.wiederholenToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.wiederholenToolStripMenuItem.Text = "Wiederholen";
             this.wiederholenToolStripMenuItem.Click += new System.EventHandler(this.wiederholenToolStripMenuItem_Click);
             // 
@@ -674,21 +697,52 @@ namespace picture_editor
             this.rotTextBox.Size = new System.Drawing.Size(49, 20);
             this.rotTextBox.TabIndex = 12;
             // 
-            // histogramPictureBox
+            // histogrammToolStripMenuItem
             // 
-            this.histogramPictureBox.Location = new System.Drawing.Point(3, 3);
-            this.histogramPictureBox.Name = "histogramPictureBox";
-            this.histogramPictureBox.Size = new System.Drawing.Size(255, 132);
-            this.histogramPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.histogramPictureBox.TabIndex = 1;
-            this.histogramPictureBox.TabStop = false;
+            this.histogrammToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.grayscaleToolStripMenuItem,
+            this.rGBToolStripMenuItem,
+            this.grünToolStripMenuItem,
+            this.blauToolStripMenuItem,
+            this.rGBToolStripMenuItem1});
+            this.histogrammToolStripMenuItem.Name = "histogrammToolStripMenuItem";
+            this.histogrammToolStripMenuItem.Size = new System.Drawing.Size(86, 20);
+            this.histogrammToolStripMenuItem.Text = "Histogramm";
             // 
-            // schließenToolStripMenuItem1
+            // grayscaleToolStripMenuItem
             // 
-            this.schließenToolStripMenuItem1.Name = "schließenToolStripMenuItem1";
-            this.schließenToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.schließenToolStripMenuItem1.Text = "Schließen";
-            this.schließenToolStripMenuItem1.Click += new System.EventHandler(this.schließenToolStripMenuItem1_Click);
+            this.grayscaleToolStripMenuItem.Name = "grayscaleToolStripMenuItem";
+            this.grayscaleToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.grayscaleToolStripMenuItem.Text = "Grayscale";
+            this.grayscaleToolStripMenuItem.Click += new System.EventHandler(this.grayscaleToolStripMenuItem_Click);
+            // 
+            // rGBToolStripMenuItem
+            // 
+            this.rGBToolStripMenuItem.Name = "rGBToolStripMenuItem";
+            this.rGBToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rGBToolStripMenuItem.Text = "Rot";
+            this.rGBToolStripMenuItem.Click += new System.EventHandler(this.rGBToolStripMenuItem_Click);
+            // 
+            // grünToolStripMenuItem
+            // 
+            this.grünToolStripMenuItem.Name = "grünToolStripMenuItem";
+            this.grünToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.grünToolStripMenuItem.Text = "Grün";
+            this.grünToolStripMenuItem.Click += new System.EventHandler(this.grünToolStripMenuItem_Click);
+            // 
+            // blauToolStripMenuItem
+            // 
+            this.blauToolStripMenuItem.Name = "blauToolStripMenuItem";
+            this.blauToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.blauToolStripMenuItem.Text = "Blau";
+            this.blauToolStripMenuItem.Click += new System.EventHandler(this.blauToolStripMenuItem_Click);
+            // 
+            // rGBToolStripMenuItem1
+            // 
+            this.rGBToolStripMenuItem1.Name = "rGBToolStripMenuItem1";
+            this.rGBToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.rGBToolStripMenuItem1.Text = "RGB";
+            this.rGBToolStripMenuItem1.Click += new System.EventHandler(this.rGBToolStripMenuItem1_Click);
             // 
             // Form1
             // 
@@ -722,7 +776,7 @@ namespace picture_editor
             this.anzeigenPanel.ResumeLayout(false);
             this.anzeigenPanel.PerformLayout();
             this.histogrammPanel.ResumeLayout(false);
-            this.histogrammPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.histogramPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.graukeilPictureBox)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -733,7 +787,6 @@ namespace picture_editor
             this.panel4.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.histogramPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -800,6 +853,12 @@ namespace picture_editor
         private System.Windows.Forms.TextBox rotTextBox;
         private System.Windows.Forms.PictureBox histogramPictureBox;
         private System.Windows.Forms.ToolStripMenuItem schließenToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem histogrammToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem grayscaleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rGBToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem grünToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem blauToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rGBToolStripMenuItem1;
     }
 }
 
