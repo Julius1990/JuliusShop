@@ -103,6 +103,7 @@
             // 
             // progressBar1
             // 
+            this.progressBar1.Visible = false;
             this.progressBar1.Location = new System.Drawing.Point(118, 513);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(107, 42);
