@@ -23,14 +23,7 @@ namespace picture_editor
 
         //----------------------------------------------------------------------------------------------------------------------
         //Variables
-
-        public Bitmap geladenesBild;
-        public Bitmap _geladenesBild
-        {
-            get{return geladenesBild;}
-            set { geladenesBild = value; }
-        }
-        
+                
         int maxSchritte = 10;
         Bitmap[] zwischenSchritte = new Bitmap[10];
         int zwischenSchrittCounter = 0;
@@ -150,19 +143,21 @@ namespace picture_editor
         //Schwarz Weiß Filter
         private void change_to_greymap()    //noch sehr ineffizient
         {
-            Bitmap greyBitmap = (Bitmap)pictureBox1.Image; //new Bitmap(pictureBox1.Image.Width, pictureBox1.Image.Height);
-            Bitmap origBitmap = (Bitmap)pictureBox1.Image;
+            Bitmap origBitmap = (Bitmap)pictureBox1.Image;  //zu änderndes Bild holen
+            Bitmap greyBitmap = new Bitmap(origBitmap.Width, origBitmap.Height);    //geändertes Bild
 
-            int[] hist = new int[256];
-            int max = 0;
+            int[] hist = new int[256];  //lookup table für Histogram
+            int max = 0;    //speichert die höchste anzahl an vorkommenden Grautönen
 
-            for (int a = 0; a < 255; a++)
+            for (int a = 0; a < 255; a++)   //alles auf 0 setzen
             {
                 hist[a] = 0;
             }
 
+            //Fortschritt anzeigen
             progressBar1.Maximum = pictureBox1.Image.Width;
             progressBar1.Value = 0;
+
             //läuft jedes Pixel einzeln durch
             for (int x = 0; x < pictureBox1.Image.Width; x++)
             {
@@ -585,7 +580,7 @@ namespace picture_editor
         }
         private void negativBerechnen()
         {
-            Bitmap orig = geladenesBild;
+            Bitmap orig = (Bitmap)pictureBox1.Image;
             Bitmap inv = new Bitmap(orig.Width, orig.Height);
 
             progressBar1.Maximum = pictureBox1.Image.Width;
@@ -604,7 +599,6 @@ namespace picture_editor
                     inv.SetPixel(x, y, invCol);
                 }
             }
-            geladenesBild = inv;
             pictureBox1.Image = inv;
             speicherZwischen(inv);
         }
@@ -621,9 +615,9 @@ namespace picture_editor
             gr.InterpolationMode = InterpolationMode.Bicubic;
             gr.DrawImage(orig, new Rectangle(0, 0, targetWidth, targetHeight), new Rectangle(0, 0, orig.Width, orig.Height), GraphicsUnit.Pixel);
             gr.Dispose();
-            geladenesBild = gross;
             pictureBox1.Image = gross;
             speicherZwischen(gross);
+            orig.Dispose();
         }
         private void bildVerkleinern(int value)
         {
@@ -636,9 +630,9 @@ namespace picture_editor
             gr.InterpolationMode = InterpolationMode.Bicubic;
             gr.DrawImage(orig, new Rectangle(0, 0, targetWidth, targetHeight), new Rectangle(0, 0, orig.Width, orig.Height), GraphicsUnit.Pixel);
             gr.Dispose();
-            geladenesBild = gross;
             pictureBox1.Image = gross;
             speicherZwischen(gross);
+            orig.Dispose();
         }
         private void groeserButton_Click(object sender, EventArgs e)
         {
@@ -676,7 +670,8 @@ namespace picture_editor
         {
             if (pictureBox1.Image != null)
             {
-                zweifachButton.Text = (pictureBox1.Image.Width * 2).ToString() + " x " + (pictureBox1.Image.Height * 2).ToString();
+                string zweifach = (pictureBox1.Image.Width * 2).ToString() +" x " + (pictureBox1.Image.Height * 2).ToString();
+                zweifachButton.Text = zweifach;
                 vierfachButton.Text = (pictureBox1.Image.Width * 4).ToString() + " x " + (pictureBox1.Image.Height * 4).ToString();
                 halbButton.Text = (pictureBox1.Image.Width / 2).ToString() + " x " + (pictureBox1.Image.Height / 2).ToString();
                 viertelButton.Text = (pictureBox1.Image.Width / 4).ToString() + " x " + (pictureBox1.Image.Height / 4).ToString();
@@ -740,6 +735,7 @@ namespace picture_editor
                 }
             }
             graukeilPictureBox.Image = graukeil;
+            graukeilPictureBox.Visible = true;
         }
         private void zeichneRotkeil()
         {
@@ -753,6 +749,7 @@ namespace picture_editor
                 }
             }
             graukeilPictureBox.Image = rotkeil;
+            graukeilPictureBox.Visible = true;
         }
         private void zeichneGruenkeil()
         {
@@ -766,6 +763,7 @@ namespace picture_editor
                 }
             }
             graukeilPictureBox.Image = greenkeil;
+            graukeilPictureBox.Visible = true;
         }
         private void zeichneBlaukeil()
         {
@@ -779,6 +777,7 @@ namespace picture_editor
                 }
             }
             graukeilPictureBox.Image = blaukeil;
+            graukeilPictureBox.Visible = true;
         }
         private void zeichneFarbkeil()
         {
@@ -805,7 +804,7 @@ namespace picture_editor
                 for (int y = 0; y < 15; y++)
                 {
                     Color neu = Color.FromArgb(0, 255, x);
-                    farbkeil.SetPixel(x+512, y, neu);
+                    farbkeil.SetPixel(x+510, y, neu);
                 }
             }
             for (x=0; x <= 255; x++)
@@ -813,10 +812,11 @@ namespace picture_editor
                 for (int y = 0; y < 15; y++)
                 {
                     Color neu = Color.FromArgb(0, 255 - x, 255);
-                    farbkeil.SetPixel(x+768, y, neu);
+                    farbkeil.SetPixel(x+766, y, neu);
                 }
             }
             graukeilPictureBox.Image = farbkeil;
+            graukeilPictureBox.Visible = true;
         }
 
         //Menü Bar "Datei"
@@ -825,20 +825,15 @@ namespace picture_editor
             DialogResult result = bildÖffnenDialog.ShowDialog();
             if (result == DialogResult.OK)
             {
+                clearSave();
                 pictureBox1.Enabled = true;
                 filterPanel.Enabled = true;
                 skalierenPanel.Enabled = true;
                 anzeigenPanel.Enabled = true;
                 pictureBox1.Image = Image.FromFile(bildÖffnenDialog.FileName);
                 pictureBox3.Image = Image.FromFile(bildÖffnenDialog.FileName);
-                geladenesBild = (Bitmap)pictureBox1.Image;
                 speicherZwischen((Bitmap)Image.FromFile(bildÖffnenDialog.FileName));
                 skalierungAnzeigen();
-                if (histogramPictureBox.Image != null)
-                {
-                    histogramPictureBox.Image = null;
-                    graukeilPictureBox.Image = null;
-                }
             }
         }
         private void speichernToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -857,13 +852,17 @@ namespace picture_editor
         }
         private void schließenToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            clearSave();
+            
+            //alles ab hier wurde in die clearSave gepackt. Wenn am 15.4.14 noch drin, kann es gelöscht werden
+            /*
             Bitmap leer = new Bitmap(1, 1);
             leer.SetPixel(0, 0, Color.LightSlateGray);
-            pictureBox1.Image = leer;
             pictureBox1.Enabled = false;
             pictureBox2.BackColor = Color.LightSlateGray;
-            pictureBox3.Image = leer;
-            histogramPictureBox.Image = leer;
+            histogramPictureBox.BackColor = Color.LightSlateGray;
+            graukeilPictureBox.BackColor = Color.LightSlateGray;
+            graukeilPictureBox.Visible = false;
             rotTextBox.Text = "";
             gruenTextBox.Text = "";
             blauTextBox.Text = "";
@@ -873,7 +872,7 @@ namespace picture_editor
             filterPanel.Enabled = false;
             skalierenPanel.Enabled = false;
             anzeigenPanel.Enabled = false;
-            progressBar1.Value = 0;
+            progressBar1.Value = 0;*/
         }
         
         //Menü Bar "Schritt"
@@ -909,6 +908,50 @@ namespace picture_editor
 
             zwischenSchritte[zwischenSchrittCounter] = bitmapIn;
             Debug.WriteLine("SpeicherCounter: " + zwischenSchrittCounter.ToString());
+        }
+        private void clearSave()
+        {
+            for (int i = 0; i < maxSchritte; i++)
+            {
+                if (zwischenSchritte[i] != null)
+                {
+                    zwischenSchritte[i].Dispose();
+                }
+            }
+            zwischenSchrittCounter = 0;
+            if (graukeilPictureBox.Image != null)
+            {
+                graukeilPictureBox.Image = null;
+            }
+            if (pictureBox3.Image != null)
+            {
+                pictureBox3.Image = null;
+            }
+            if (histogramPictureBox.Image != null)
+            {
+                histogramPictureBox.Image = null;
+            }
+            if (pictureBox1.Image != null)
+            {
+                pictureBox1.Image = null;
+            }
+            Bitmap leer = new Bitmap(1, 1);
+            leer.SetPixel(0, 0, Color.LightSlateGray);
+            pictureBox1.Enabled = false;
+            pictureBox2.BackColor = Color.LightSlateGray;
+            histogramPictureBox.BackColor = Color.LightSlateGray;
+            graukeilPictureBox.BackColor = Color.LightSlateGray;
+            graukeilPictureBox.Visible = false;
+            rotTextBox.Text = "";
+            gruenTextBox.Text = "";
+            blauTextBox.Text = "";
+            hueTextBox.Text = "";
+            saturationTextBox.Text = "";
+            brightnessTextBox.Text = "";
+            filterPanel.Enabled = false;
+            skalierenPanel.Enabled = false;
+            anzeigenPanel.Enabled = false;
+            progressBar1.Value = 0;
         }
         private void rückgängigToolStripMenuItem_Click(object sender, EventArgs e)
         {

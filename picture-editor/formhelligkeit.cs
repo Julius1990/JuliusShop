@@ -124,7 +124,7 @@ namespace picture_editor
 
         private void speichernButton_Click(object sender, EventArgs e)
         {
-            parent._geladenesBild = aktuell;
+            //parent._geladenesBild = aktuell;      //Versuchsweise auskommentiert
             parent.setPictureBox(aktuell);
             parent.speicherZwischen(aktuell);
             this.Close();

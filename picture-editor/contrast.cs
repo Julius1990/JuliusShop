@@ -199,7 +199,6 @@ namespace picture_editor
         {
             progressBar1.Visible = true;
             Bitmap fertig = kontrastAnwenden(0, originalgroese);
-            parent._geladenesBild = fertig;
             parent.setPictureBox(fertig);
             parent.speicherZwischen(fertig);
             originalgroese.Dispose();
