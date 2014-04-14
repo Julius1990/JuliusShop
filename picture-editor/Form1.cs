@@ -952,6 +952,7 @@ namespace picture_editor
             skalierenPanel.Enabled = false;
             anzeigenPanel.Enabled = false;
             progressBar1.Value = 0;
+            GC.Collect();   //räumt auf, löscht alles unbenutzte
         }
         private void rückgängigToolStripMenuItem_Click(object sender, EventArgs e)
         {
