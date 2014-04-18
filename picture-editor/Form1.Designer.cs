@@ -115,7 +115,6 @@ namespace picture_editor
             // bildÖffnenDialog
             // 
             this.bildÖffnenDialog.FileName = "openFileDialog1";
-            this.bildÖffnenDialog.Filter = "JPG|*.jpg|JPEG|*.jpeg";
             // 
             // panelPictureBox
             // 
@@ -137,7 +136,7 @@ namespace picture_editor
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
+            this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
             // 
             // filterPanel
             // 
@@ -212,7 +211,7 @@ namespace picture_editor
             // 
             // bildSpeichernDialog
             // 
-            this.bildSpeichernDialog.Filter = "JPG|*.jpg|PNG|*.png";
+            this.bildSpeichernDialog.Filter = "JPG|*.jpg|PNG|*.png|BMP|*.bmp|GIF|*.gif";
             // 
             // skalierenPanel
             // 
@@ -417,7 +416,7 @@ namespace picture_editor
             this.histogramPictureBox.Location = new System.Drawing.Point(3, 3);
             this.histogramPictureBox.Name = "histogramPictureBox";
             this.histogramPictureBox.Size = new System.Drawing.Size(255, 132);
-            this.histogramPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.histogramPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.histogramPictureBox.TabIndex = 1;
             this.histogramPictureBox.TabStop = false;
             // 
@@ -565,35 +564,35 @@ namespace picture_editor
             // grayscaleToolStripMenuItem
             // 
             this.grayscaleToolStripMenuItem.Name = "grayscaleToolStripMenuItem";
-            this.grayscaleToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.grayscaleToolStripMenuItem.Text = "Grayscale";
+            this.grayscaleToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.grayscaleToolStripMenuItem.Text = "Grauwert";
             this.grayscaleToolStripMenuItem.Click += new System.EventHandler(this.grayscaleToolStripMenuItem_Click);
             // 
             // rGBToolStripMenuItem
             // 
             this.rGBToolStripMenuItem.Name = "rGBToolStripMenuItem";
-            this.rGBToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.rGBToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.rGBToolStripMenuItem.Text = "Rot";
             this.rGBToolStripMenuItem.Click += new System.EventHandler(this.rGBToolStripMenuItem_Click);
             // 
             // grünToolStripMenuItem
             // 
             this.grünToolStripMenuItem.Name = "grünToolStripMenuItem";
-            this.grünToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.grünToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.grünToolStripMenuItem.Text = "Grün";
             this.grünToolStripMenuItem.Click += new System.EventHandler(this.grünToolStripMenuItem_Click);
             // 
             // blauToolStripMenuItem
             // 
             this.blauToolStripMenuItem.Name = "blauToolStripMenuItem";
-            this.blauToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.blauToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.blauToolStripMenuItem.Text = "Blau";
             this.blauToolStripMenuItem.Click += new System.EventHandler(this.blauToolStripMenuItem_Click);
             // 
             // rGBToolStripMenuItem1
             // 
             this.rGBToolStripMenuItem1.Name = "rGBToolStripMenuItem1";
-            this.rGBToolStripMenuItem1.Size = new System.Drawing.Size(124, 22);
+            this.rGBToolStripMenuItem1.Size = new System.Drawing.Size(122, 22);
             this.rGBToolStripMenuItem1.Text = "RGB";
             this.rGBToolStripMenuItem1.Click += new System.EventHandler(this.rGBToolStripMenuItem1_Click);
             // 
@@ -765,7 +764,7 @@ namespace picture_editor
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Photoshop für Arme";
+            this.Text = "Picture Editor by Julius Weyl";
             this.TransparencyKey = System.Drawing.Color.Crimson;
             this.panelPictureBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

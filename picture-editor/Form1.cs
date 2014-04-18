@@ -39,96 +39,6 @@ namespace picture_editor
         {
             pictureBox1.Image = bitIn;
         }
-        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (pictureBox1.Image != null)
-            {
-                Bitmap box = (Bitmap)pictureBox1.Image;
-                Color fuerTextBox = System.Drawing.Color.White;
-                if (pictureBox1.SizeMode == PictureBoxSizeMode.Zoom)
-                {
-                    float seitenVerhaeltnisBild = (float)pictureBox1.Image.Width / pictureBox1.Image.Height;
-                    float seitenVerhaeltnisBox = (float)pictureBox1.Width / pictureBox1.Height;
-
-                    //maus position einlesen
-                    float newX = (float)e.X;
-                    float newY = (float)e.Y;
-
-                    //Bild füllt komplette Breite
-                    if (seitenVerhaeltnisBild > seitenVerhaeltnisBox)
-                    {
-                        float ratioWidth = (float)pictureBox1.Image.Width / (float)pictureBox1.Width;
-
-                        newX *= ratioWidth;
-
-                        float scale = (float)pictureBox1.Width / (float)pictureBox1.Image.Width;
-                        float displayHeight = scale * (float)pictureBox1.Image.Height;
-                        float diffHeight = (float)pictureBox1.Height - (float)displayHeight;
-
-                        diffHeight /= 2;
-
-                        newY -= diffHeight;
-                        newY /= scale;
-                    }
-                    //Bild füllt komplette Höhe
-                    else
-                    {
-                        float ratioHeight = (float)pictureBox1.Image.Height / (float)pictureBox1.Height;
-
-                        newY *= ratioHeight;
-
-                        float scale = (float)pictureBox1.Height / (float)pictureBox1.Image.Height;
-                        float displayWidth = scale * (float)pictureBox1.Image.Width;
-                        float diffWidth = (float)pictureBox1.Width - (float)displayWidth;
-
-                        diffWidth /= 2;
-
-                        newX -= diffWidth;
-                        newX /= scale;
-                    }
-                    if (newX > 0 && newX < box.Width && newY > 0 && newY < box.Height)
-                    {
-                        Color neu = box.GetPixel((int)newX, (int)newY);
-                        fuerTextBox = neu;
-                        pictureBox2.BackColor = neu;
-                    }
-
-                }
-                else if (pictureBox1.SizeMode == PictureBoxSizeMode.CenterImage)
-                {
-                    int diffWidth = pictureBox1.Width - pictureBox1.Image.Width;
-                    int diffHeight = pictureBox1.Height - pictureBox1.Image.Height;
-
-                    diffWidth /= 2;
-                    diffHeight /= 2;
-
-                    int coordX = e.X;
-                    int coordY = e.Y;
-
-                    coordX -= diffWidth;
-                    coordY -= diffHeight;
-
-                    if (coordX > 0 && coordX < box.Width && coordY > 0 && coordY < box.Height)
-                    {
-                        Color neu = box.GetPixel(coordX, coordY);
-                        fuerTextBox = neu;
-                        pictureBox2.BackColor = neu;
-                    }
-                }
-                else if (pictureBox1.SizeMode == PictureBoxSizeMode.AutoSize)
-                {
-                    Color auto = box.GetPixel(e.X, e.Y);
-                    fuerTextBox = auto;
-                    pictureBox2.BackColor = auto;
-                }
-                rotTextBox.Text = fuerTextBox.R.ToString();
-                gruenTextBox.Text = fuerTextBox.G.ToString();
-                blauTextBox.Text = fuerTextBox.B.ToString();
-                hueTextBox.Text = fuerTextBox.GetHue().ToString();
-                saturationTextBox.Text = fuerTextBox.GetSaturation().ToString();
-                brightnessTextBox.Text = fuerTextBox.GetBrightness().ToString();
-            }
-        }
         private bool bildVorhanden()
         {
             if (pictureBox1.Image != null)
@@ -237,16 +147,16 @@ namespace picture_editor
                     }
                 }
             }
-            Bitmap histogramm = new Bitmap(257, 132);
+            Bitmap histogramm = new Bitmap(258, 132);
             histogramPictureBox.BackColor = Color.White;
             double ratio = 132.0 / (double)max;
 
-            for (int x = 0; x < 255; x++)
+            for (int x = 1; x <= 256; x++)
             {
-                int y = (int)((double)hist[255 - x] * ratio);
+                int y = (int)((double)hist[256 - x] * ratio);
                 for (int b = 0; b < y; b++)
                 {
-                    histogramm.SetPixel(x+1, 131 - b, Color.Black);
+                    histogramm.SetPixel(x, 131 - b, Color.Black);
                 }
             }
             histogramPictureBox.Image = histogramm;
@@ -273,16 +183,16 @@ namespace picture_editor
                         max = rot[rotwert];
                 }
             }
-            Bitmap histogramm = new Bitmap(257, 132);
+            Bitmap histogramm = new Bitmap(258, 132);
             histogramPictureBox.BackColor = Color.White;
             double ratio = 132.0 / (double)max;
 
-            for (int x = 0; x < 255; x++)
+            for (int x = 1; x <= 256; x++)
             {
-                int y = (int)((double)rot[255 - x] * ratio);
+                int y = (int)((double)rot[256 - x] * ratio);
                 for (int b = 0; b < y; b++)
                 {
-                    histogramm.SetPixel(x + 1, 131 - b, Color.Red);
+                    histogramm.SetPixel(x, 131 - b, Color.Red);
                 }
             }
             histogramPictureBox.Image = histogramm;
@@ -309,16 +219,16 @@ namespace picture_editor
                         max = green[gruenwert];
                 }
             }
-            Bitmap histogramm = new Bitmap(257, 132);
+            Bitmap histogramm = new Bitmap(258, 132);
             histogramPictureBox.BackColor = Color.White;
             double ratio = 132.0 / (double)max;
 
-            for (int x = 0; x < 255; x++)
+            for (int x = 1; x <= 256; x++)
             {
-                int y = (int)((double)green[255 - x] * ratio);
+                int y = (int)((double)green[256 - x] * ratio);
                 for (int b = 0; b < y; b++)
                 {
-                    histogramm.SetPixel(x + 1, 131 - b, Color.Green);
+                    histogramm.SetPixel(x, 131 - b, Color.Green);
                 }
             }
             histogramPictureBox.Image = histogramm;
@@ -328,7 +238,7 @@ namespace picture_editor
             Bitmap orig = (Bitmap)pictureBox1.Image;
             int[] blue = new int[256];
             int max = 0;
-            for (int a = 0; a < 255; a++)
+            for (int a = 0; a <= 255; a++)
             {
                 blue[a] = 0;
             }
@@ -345,16 +255,16 @@ namespace picture_editor
                         max = blue[blauwert];
                 }
             }
-            Bitmap histogramm = new Bitmap(257, 132);
+            Bitmap histogramm = new Bitmap(258, 132);
             histogramPictureBox.BackColor = Color.White;
             double ratio = 132.0 / (double)max;
 
-            for (int x = 0; x < 255; x++)
+            for (int x = 1; x <= 256; x++)
             {
-                int y = (int)((double)blue[255 - x] * ratio);
+                int y = (int)((double)blue[256 - x] * ratio);
                 for (int b = 0; b < y; b++)
                 {
-                    histogramm.SetPixel(x + 1, 131 - b, Color.Blue);
+                    histogramm.SetPixel(x , 131 - b, Color.Blue);
                 }
             }
             histogramPictureBox.Image = histogramm;
@@ -364,24 +274,24 @@ namespace picture_editor
             Bitmap orig = (Bitmap)pictureBox1.Image;
 
             //blau
-            int[] blue = new int[256];
-            int maxBlau = 0;
+            long[] blue = new long[256];
+            long maxBlau = 0;
             for (int a = 0; a < 255; a++)
             {
                 blue[a] = 0;
             }
 
             //rot
-            int[] red = new int[256];
-            int maxRot = 0;
+            long[] red = new long[256];
+            long maxRot = 0;
             for (int a = 0; a < 255; a++)
             {
                 red[a] = 0;
             }
 
             //Grün
-            int[] greene = new int[256];
-            int maxGruen = 0;
+            long[] greene = new long[256];
+            long maxGruen = 0;
             for (int a = 0; a < 255; a++)
             {
                 greene[a] = 0;
@@ -415,10 +325,10 @@ namespace picture_editor
                         maxBlau = blue[blauwert];
                 }
             }
-            Bitmap histogramm = new Bitmap(257, 132);
+            Bitmap histogramm = new Bitmap(258, 132);
             histogramPictureBox.BackColor = Color.White;
 
-            int groesste = 0;
+            long groesste = 0;
 
             if (maxBlau > maxGruen && maxBlau > maxRot)
             {
@@ -431,54 +341,57 @@ namespace picture_editor
             else
                 groesste = maxRot;
 
+            Debug.WriteLine(groesste);
+            Debug.WriteLine("Blau:" + maxBlau.ToString());
+
             double ratio = 132.0 / (double)groesste;
 
             //rot
-            for (int x = 0; x < 255; x++)
+            for (int x = 1; x <= 256; x++)
             {
-                int y = (int)((double)red[255 - x] * ratio);
+                int y = (int)((double)red[256 - x] * ratio);
                 for (int b = 0; b < y; b++)
                 {
-                    histogramm.SetPixel(x + 1, 131 - b, Color.Red);
+                    histogramm.SetPixel(x, 131 - b, Color.Red);
                 }
             }
 
             //grün
-            for (int x = 0; x < 255; x++)
+            for (int x = 1; x <= 256; x++)
             {
-                int y = (int)((double)greene[255 - x] * ratio);
+                int y = (int)((double)greene[256 - x] * ratio);
                 for (int b = 0; b < y; b++)
                 {
-                    if (histogramm.GetPixel(x + 1, 131 - b).R != 0)
+                    if (histogramm.GetPixel(x, 131 - b).R != 0)
                     {
-                        histogramm.SetPixel(x + 1, 131 - b, Color.Yellow);
+                        histogramm.SetPixel(x, 131 - b, Color.Yellow);
                     }
                     else
-                        histogramm.SetPixel(x + 1, 131 - b, Color.Green);
+                        histogramm.SetPixel(x, 131 - b, Color.Green);
                 }
             }
 
             //blau
-            for (int x = 0; x < 255; x++)
+            for (int x = 1; x <= 256; x++)
             {
-                int y = (int)((double)blue[255 - x] * ratio);
+                int y = (int)((double)blue[256 - x] * ratio);
                 for (int b = 0; b < y; b++)
                 {
                     Color grab=histogramm.GetPixel(x + 1, 131 - b);
                     if (grab.R != 0 && grab.G != 0)
                     {
-                        histogramm.SetPixel(x + 1, 131 - b, Color.Gray);
+                        histogramm.SetPixel(x, 131 - b, Color.Gray);
                     }
                     else if (grab.R != 0)
                     {
-                        histogramm.SetPixel(x + 1, 131 - b, Color.Magenta);
+                        histogramm.SetPixel(x, 131 - b, Color.Magenta);
                     }
                     else if (grab.G != 0)
                     {
-                        histogramm.SetPixel(x + 1, 131 - b, Color.LightBlue);
+                        histogramm.SetPixel(x, 131 - b, Color.LightBlue);
                     }
                     else
-                        histogramm.SetPixel(x + 1, 131 - b, Color.Blue);
+                        histogramm.SetPixel(x, 131 - b, Color.Blue);
                 }
             }
             histogramPictureBox.Image = histogramm;
@@ -825,25 +738,56 @@ namespace picture_editor
             DialogResult result = bildÖffnenDialog.ShowDialog();
             if (result == DialogResult.OK)
             {
-                clearSave();
-                pictureBox1.Enabled = true;
-                filterPanel.Enabled = true;
-                skalierenPanel.Enabled = true;
-                anzeigenPanel.Enabled = true;
-                pictureBox1.Image = Image.FromFile(bildÖffnenDialog.FileName);
-                pictureBox3.Image = Image.FromFile(bildÖffnenDialog.FileName);
-                speicherZwischen((Bitmap)Image.FromFile(bildÖffnenDialog.FileName));
-                skalierungAnzeigen();
+                string ext = Path.GetExtension(bildÖffnenDialog.FileName);
+                if (ext == ".jpg" || ext==".JPG" || ext == ".jpeg" || ext == ".png" || ext == ".gif" || ext == ".bmp")
+                {
+                    clearSave();
+                    pictureBox1.Enabled = true;
+                    filterPanel.Enabled = true;
+                    skalierenPanel.Enabled = true;
+                    anzeigenPanel.Enabled = true;
+                    pictureBox1.Image = Image.FromFile(bildÖffnenDialog.FileName);
+                    pictureBox3.Image = Image.FromFile(bildÖffnenDialog.FileName);
+                    speicherZwischen((Bitmap)Image.FromFile(bildÖffnenDialog.FileName));
+                    skalierungAnzeigen();
+                }
+                else
+                {
+                    MessageBox.Show("Das Format wird nicht unterstützt");
+                }
             }
         }
         private void speichernToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            DialogResult result = bildSpeichernDialog.ShowDialog();
-
-            if (result == DialogResult.OK)
+            if (pictureBox1.Image == null)
             {
-                pictureBox1.Image.Save(bildSpeichernDialog.FileName, ImageFormat.Jpeg);
+                MessageBox.Show("Es gibt nichts zu speichern");
+            }
+            else
+            {
+                DialogResult result = bildSpeichernDialog.ShowDialog();
 
+                if (result == DialogResult.OK)
+                {
+                    string extension = Path.GetExtension(bildSpeichernDialog.FileName);
+                    if (extension == ".jpeg" || extension == ".jpg")
+                    {
+                        pictureBox1.Image.Save(bildSpeichernDialog.FileName, ImageFormat.Jpeg);
+                    }
+                    else if (extension == ".png")
+                    {
+                        pictureBox1.Image.Save(bildSpeichernDialog.FileName, ImageFormat.Png);
+                    }
+                    else if (extension == ".bmp")
+                    {
+                        pictureBox1.Image.Save(bildSpeichernDialog.FileName, ImageFormat.Bmp);
+                    }
+                    else if (extension == ".gif")
+                    {
+                        pictureBox1.Image.Save(bildSpeichernDialog.FileName, ImageFormat.Gif);
+                    }
+
+                }
             }
         }
         private void schließenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1015,14 +959,198 @@ namespace picture_editor
                 zeichneBlaukeil();
             }
         }      //blau histogramm
-        private void rGBToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void rGBToolStripMenuItem1_Click(object sender, EventArgs e)        //rgb histogramm
         {
             if (bildVorhanden())
             {
                 zeichneFarbkeil();
                 histRGB();
             }
-        }     //rgb histogramm
+        }
+
+        
+        /*
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (pictureBox1.Image != null)
+            {
+                Bitmap box = (Bitmap)pictureBox1.Image;
+                Color fuerTextBox = System.Drawing.Color.White;
+                if (pictureBox1.SizeMode == PictureBoxSizeMode.Zoom)
+                {
+                    float seitenVerhaeltnisBild = (float)pictureBox1.Image.Width / pictureBox1.Image.Height;
+                    float seitenVerhaeltnisBox = (float)pictureBox1.Width / pictureBox1.Height;
+
+                    //maus position einlesen
+                    float newX = (float)e.X;
+                    float newY = (float)e.Y;
+
+                    //Bild füllt komplette Breite
+                    if (seitenVerhaeltnisBild > seitenVerhaeltnisBox)
+                    {
+                        float ratioWidth = (float)pictureBox1.Image.Width / (float)pictureBox1.Width;
+
+                        newX *= ratioWidth;
+
+                        float scale = (float)pictureBox1.Width / (float)pictureBox1.Image.Width;
+                        float displayHeight = scale * (float)pictureBox1.Image.Height;
+                        float diffHeight = (float)pictureBox1.Height - (float)displayHeight;
+
+                        diffHeight /= 2;
+
+                        newY -= diffHeight;
+                        newY /= scale;
+                    }
+                    //Bild füllt komplette Höhe
+                    else
+                    {
+                        float ratioHeight = (float)pictureBox1.Image.Height / (float)pictureBox1.Height;
+
+                        newY *= ratioHeight;
+
+                        float scale = (float)pictureBox1.Height / (float)pictureBox1.Image.Height;
+                        float displayWidth = scale * (float)pictureBox1.Image.Width;
+                        float diffWidth = (float)pictureBox1.Width - (float)displayWidth;
+
+                        diffWidth /= 2;
+
+                        newX -= diffWidth;
+                        newX /= scale;
+                    }
+                    if (newX > 0 && newX < box.Width && newY > 0 && newY < box.Height)
+                    {
+                        Color neu = box.GetPixel((int)newX, (int)newY);
+                        fuerTextBox = neu;
+                        pictureBox2.BackColor = neu;
+                    }
+
+                }
+                else if (pictureBox1.SizeMode == PictureBoxSizeMode.CenterImage)
+                {
+                    int diffWidth = pictureBox1.Width - pictureBox1.Image.Width;
+                    int diffHeight = pictureBox1.Height - pictureBox1.Image.Height;
+
+                    diffWidth /= 2;
+                    diffHeight /= 2;
+
+                    int coordX = e.X;
+                    int coordY = e.Y;
+
+                    coordX -= diffWidth;
+                    coordY -= diffHeight;
+
+                    if (coordX > 0 && coordX < box.Width && coordY > 0 && coordY < box.Height)
+                    {
+                        Color neu = box.GetPixel(coordX, coordY);
+                        fuerTextBox = neu;
+                        pictureBox2.BackColor = neu;
+                    }
+                }
+                else if (pictureBox1.SizeMode == PictureBoxSizeMode.AutoSize)
+                {
+                    Color auto = box.GetPixel(e.X, e.Y);
+                    fuerTextBox = auto;
+                    pictureBox2.BackColor = auto;
+                }
+                rotTextBox.Text = fuerTextBox.R.ToString();
+                gruenTextBox.Text = fuerTextBox.G.ToString();
+                blauTextBox.Text = fuerTextBox.B.ToString();
+                hueTextBox.Text = fuerTextBox.GetHue().ToString();
+                saturationTextBox.Text = fuerTextBox.GetSaturation().ToString();
+                brightnessTextBox.Text = fuerTextBox.GetBrightness().ToString();
+            }
+        }*/
+
+        private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (pictureBox1.Image != null)
+            {
+                Bitmap box = (Bitmap)pictureBox1.Image;
+                Color fuerTextBox = System.Drawing.Color.White;
+                if (pictureBox1.SizeMode == PictureBoxSizeMode.Zoom)
+                {
+                    float seitenVerhaeltnisBild = (float)pictureBox1.Image.Width / pictureBox1.Image.Height;
+                    float seitenVerhaeltnisBox = (float)pictureBox1.Width / pictureBox1.Height;
+
+                    //maus position einlesen
+                    float newX = (float)e.X;
+                    float newY = (float)e.Y;
+
+                    //Bild füllt komplette Breite
+                    if (seitenVerhaeltnisBild > seitenVerhaeltnisBox)
+                    {
+                        float ratioWidth = (float)pictureBox1.Image.Width / (float)pictureBox1.Width;
+
+                        newX *= ratioWidth;
+
+                        float scale = (float)pictureBox1.Width / (float)pictureBox1.Image.Width;
+                        float displayHeight = scale * (float)pictureBox1.Image.Height;
+                        float diffHeight = (float)pictureBox1.Height - (float)displayHeight;
+
+                        diffHeight /= 2;
+
+                        newY -= diffHeight;
+                        newY /= scale;
+                    }
+                    //Bild füllt komplette Höhe
+                    else
+                    {
+                        float ratioHeight = (float)pictureBox1.Image.Height / (float)pictureBox1.Height;
+
+                        newY *= ratioHeight;
+
+                        float scale = (float)pictureBox1.Height / (float)pictureBox1.Image.Height;
+                        float displayWidth = scale * (float)pictureBox1.Image.Width;
+                        float diffWidth = (float)pictureBox1.Width - (float)displayWidth;
+
+                        diffWidth /= 2;
+
+                        newX -= diffWidth;
+                        newX /= scale;
+                    }
+                    if (newX > 0 && newX < box.Width && newY > 0 && newY < box.Height)
+                    {
+                        Color neu = box.GetPixel((int)newX, (int)newY);
+                        fuerTextBox = neu;
+                        pictureBox2.BackColor = neu;
+                    }
+
+                }
+                else if (pictureBox1.SizeMode == PictureBoxSizeMode.CenterImage)
+                {
+                    int diffWidth = pictureBox1.Width - pictureBox1.Image.Width;
+                    int diffHeight = pictureBox1.Height - pictureBox1.Image.Height;
+
+                    diffWidth /= 2;
+                    diffHeight /= 2;
+
+                    int coordX = e.X;
+                    int coordY = e.Y;
+
+                    coordX -= diffWidth;
+                    coordY -= diffHeight;
+
+                    if (coordX > 0 && coordX < box.Width && coordY > 0 && coordY < box.Height)
+                    {
+                        Color neu = box.GetPixel(coordX, coordY);
+                        fuerTextBox = neu;
+                        pictureBox2.BackColor = neu;
+                    }
+                }
+                else if (pictureBox1.SizeMode == PictureBoxSizeMode.AutoSize)
+                {
+                    Color auto = box.GetPixel(e.X, e.Y);
+                    fuerTextBox = auto;
+                    pictureBox2.BackColor = auto;
+                }
+                rotTextBox.Text = fuerTextBox.R.ToString();
+                gruenTextBox.Text = fuerTextBox.G.ToString();
+                blauTextBox.Text = fuerTextBox.B.ToString();
+                hueTextBox.Text = fuerTextBox.GetHue().ToString();
+                saturationTextBox.Text = fuerTextBox.GetSaturation().ToString();
+                brightnessTextBox.Text = fuerTextBox.GetBrightness().ToString();
+            }
+        }
         
 
     }
