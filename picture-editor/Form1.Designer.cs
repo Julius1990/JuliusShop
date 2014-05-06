@@ -205,7 +205,7 @@ namespace picture_editor
             this.blackWhiteButton.Name = "blackWhiteButton";
             this.blackWhiteButton.Size = new System.Drawing.Size(89, 23);
             this.blackWhiteButton.TabIndex = 0;
-            this.blackWhiteButton.Text = "Schwarz-Weiß";
+            this.blackWhiteButton.Text = "Grauwertbild";
             this.blackWhiteButton.UseVisualStyleBackColor = true;
             this.blackWhiteButton.Click += new System.EventHandler(this.blackWhite_Click);
             // 

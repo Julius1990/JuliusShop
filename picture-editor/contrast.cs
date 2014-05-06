@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,7 +28,7 @@ namespace picture_editor
         Form1 parent;
         Bitmap originalgroese;
         Bitmap skaliert;
-        double kontrastwert;
+        double kontrastwert = 1;
 
         private Bitmap skalieren(Bitmap bit_in, int wert_in)
         {
@@ -185,14 +186,47 @@ namespace picture_editor
             return fertig;
         }
 
+        private Bitmap schnelleKonrastFkt(float contrast_in, Bitmap original)
+        {
+            contrast_in += (float)kontrastwert;
+            kontrastwert = contrast_in;
+
+            Bitmap adjustedImage = new Bitmap(original.Width, original.Height);
+            float brightness = 1.0f; // no change in brightness
+            float kontrast = contrast_in;
+            //double gamma = 1.0f; // no change in gamma
+
+            //float adjustedBrightness = brightness - 1.0f;
+            float adjustedBrightness = (1.0f - kontrast) / 2.0f;
+            // create matrix that will brighten and contrast the image
+            float[][] ptsArray ={
+                    new float[] {kontrast, 0, 0, 0, 0}, // scale red
+                    new float[] {0, kontrast, 0, 0, 0}, // scale green
+                    new float[] {0, 0, kontrast, 0, 0}, // scale blue
+                    new float[] {0, 0, 0, 1.0f, 0}, // don't scale alpha
+                    new float[] {adjustedBrightness, adjustedBrightness, adjustedBrightness, 0, 1}};
+
+            ImageAttributes imageAttributes = new ImageAttributes();
+            imageAttributes.ClearColorMatrix();
+            imageAttributes.SetColorMatrix(new ColorMatrix(ptsArray), ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+            //imageAttributes.SetGamma(gamma, ColorAdjustType.Bitmap);
+            Graphics g = Graphics.FromImage(adjustedImage);
+            g.DrawImage(original, new Rectangle(0, 0, adjustedImage.Width, adjustedImage.Height)
+                , 0, 0, adjustedImage.Width, adjustedImage.Height,
+                GraphicsUnit.Pixel, imageAttributes);
+            return adjustedImage;
+        }
+
         private void minusButton_Click_1(object sender, EventArgs e)
         {
             pictureBox1.Image= kontrastAnwenden(-10.0,skaliert);
+            //pictureBox1.Image = schnelleKonrastFkt(-0.05f, originalgroese);
         }
 
         private void plusButton_Click_1(object sender, EventArgs e)
         {
             pictureBox1.Image = kontrastAnwenden(10.0, skaliert);
+            //pictureBox1.Image = schnelleKonrastFkt(0.05f, originalgroese);
         }
 
         private void speichernButton_Click_1(object sender, EventArgs e)

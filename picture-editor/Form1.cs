@@ -54,7 +54,7 @@ namespace picture_editor
         private void change_to_greymap()    //noch sehr ineffizient
         {
             Bitmap origBitmap = (Bitmap)pictureBox1.Image;  //zu änderndes Bild holen
-            Bitmap greyBitmap = new Bitmap(origBitmap.Width, origBitmap.Height);    //geändertes Bild
+            
 
             int[] hist = new int[256];  //lookup table für Histogram
             int max = 0;    //speichert die höchste anzahl an vorkommenden Grautönen
@@ -67,6 +67,8 @@ namespace picture_editor
             //Fortschritt anzeigen
             progressBar1.Maximum = pictureBox1.Image.Width;
             progressBar1.Value = 0;
+
+            Bitmap greyBitmap = new Bitmap(origBitmap.Width, origBitmap.Height);    //geändertes Bild
 
             //läuft jedes Pixel einzeln durch
             for (int x = 0; x < pictureBox1.Image.Width; x++)
@@ -793,30 +795,10 @@ namespace picture_editor
         private void schließenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
+        }   //beenden, nicht schließen (wurde falsch bennant)
         private void schließenToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             clearSave();
-            
-            //alles ab hier wurde in die clearSave gepackt. Wenn am 15.4.14 noch drin, kann es gelöscht werden
-            /*
-            Bitmap leer = new Bitmap(1, 1);
-            leer.SetPixel(0, 0, Color.LightSlateGray);
-            pictureBox1.Enabled = false;
-            pictureBox2.BackColor = Color.LightSlateGray;
-            histogramPictureBox.BackColor = Color.LightSlateGray;
-            graukeilPictureBox.BackColor = Color.LightSlateGray;
-            graukeilPictureBox.Visible = false;
-            rotTextBox.Text = "";
-            gruenTextBox.Text = "";
-            blauTextBox.Text = "";
-            hueTextBox.Text = "";
-            saturationTextBox.Text = "";
-            brightnessTextBox.Text = "";
-            filterPanel.Enabled = false;
-            skalierenPanel.Enabled = false;
-            anzeigenPanel.Enabled = false;
-            progressBar1.Value = 0;*/
         }
         
         //Menü Bar "Schritt"
@@ -879,8 +861,7 @@ namespace picture_editor
             {
                 pictureBox1.Image = null;
             }
-            Bitmap leer = new Bitmap(1, 1);
-            leer.SetPixel(0, 0, Color.LightSlateGray);
+
             pictureBox1.Enabled = false;
             pictureBox2.BackColor = Color.LightSlateGray;
             histogramPictureBox.BackColor = Color.LightSlateGray;
